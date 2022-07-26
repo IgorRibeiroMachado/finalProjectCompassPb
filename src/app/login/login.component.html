@@ -1,0 +1,33 @@
+<div id="login-component">
+  <div class="login-left-side">
+    <div class="login-container">
+      <h1>Olá,</h1>
+      <p>Para continuar navegando de forma
+        segura, efetue o login na rede.
+      </p>
+      <form class="login-form">
+        <h2>Login</h2>
+        <div class="login-input">
+          <input (blur)="valida('user', $event)" minlength="4" [formControl]="user" type="text" placeholder="Usuário">
+          <img class="user-icon" src="../../assets/icons/icon-user.svg">
+        </div>
+        <div class="login-input">
+          <input (blur)="valida('password', $event)"  [formControl]="password" type="text" placeholder="Password">
+          <img class="password-icon" src="../../assets/icons/icon-password.svg">
+        </div>
+        <div *ngIf="userValid && passwordValid; else errorMessage"></div>
+        <button type="submit">Continuar</button>
+      </form>
+    </div>
+  </div>
+  <div class="login-right-side">
+    <img class="logo" src="../../assets/imgs/Logo-Compasso-Uol.svg">
+    <img class="back-image" src="../../assets/imgs/Login-Image.svg">
+  </div>
+</div>
+
+<ng-template #errorMessage>
+  <p class="errorMessage">
+    Ops, usuário ou senha inválidos. Tente novamente!
+  </p>
+</ng-template>

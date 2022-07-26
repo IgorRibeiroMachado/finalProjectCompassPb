@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import '~reset.css'; */
+@import '../node_modules/reset.css';
+
+* {
+  /* margin: 0; */
+  font-family: mark-pro;
+}
+
+@font-face {
+  font-family: 'mark-pro';
+  src: url(assets/fonts/Mark-Pro.ttf);
+}
