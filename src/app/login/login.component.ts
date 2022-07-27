@@ -1,6 +1,7 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -32,11 +33,8 @@ import { trigger, transition, style, animate, state, query, stagger } from '@ang
   ]
 })
   
-
-
 export class LoginComponent implements OnInit {
 
-  
   isMove = false;
   moveIcons() {
     if (this.loginForm.controls['user'].value || this.loginForm.controls['password'].value) {
@@ -66,9 +64,14 @@ export class LoginComponent implements OnInit {
   validate() { /* Validação simples */
     this.notValidUser = this.loginForm.controls['user'].errors
     this.notValidPassword = this.loginForm.controls['password'].errors;
+    if (!this.notValidUser && !this.notValidPassword) 
+      this.router.navigate(['/home'])
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }

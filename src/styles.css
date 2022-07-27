@@ -7,6 +7,16 @@
   font-family: mark-pro;
 }
 
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: 'mark-pro-bold';
+  src: url(assets/fonts/Mark-Pro-Bold.ttf);
+}
+
 @font-face {
   font-family: 'mark-pro';
   src: url(assets/fonts/Mark-Pro.ttf);

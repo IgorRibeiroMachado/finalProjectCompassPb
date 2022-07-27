@@ -1,0 +1,43 @@
+<div id="homeComponent">
+  <header>
+    <img src="assets/imgs/Logo-Compasso-Black.svg">
+    <div id="dateTime">
+      <p class="hour">{{dateTimeNow.hora}}:{{dateTimeNow.min}}</p>
+      <p class="date">{{dateTimeNow.diaWord}}, {{dateTimeNow.diaNumber}} de {{dateTimeNow.mes}} de {{dateTimeNow.ano}}</p>
+    </div>
+    <div id="temperature-container">
+      <p>Passo Fundo - RS</p>
+      <div class="temperature">
+        <img src="assets/imgs/cloud.png">
+        <p>22°</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <img src="assets/imgs/Bola-Compasso.png">
+    <div class="texts">
+      <p class="red-text-first">Our Mission is</p>
+      <p class="black-text">Nossa missão é</p>
+      <p class="red-text">to transform the world</p>
+      <p class="black-text">transformar o mundo</p>
+      <p class="red-text">building digital experiences</p>
+      <p class="black-text">construindo experiências digitais</p>
+      <p class="red-text">that enable our client's growth</p>
+      <p class="black-text">que permitam o crescimento dos nossos clientes</p>
+    </div>
+  </main>
+  <footer>
+    <p class="footer-message">Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixa-a
+      aberta em segundo plano e abra uma nova janela para continuar a navegar.
+    </p>
+    <p class="refresh-message">Application refresh in</p>
+    <div class="timer">
+      <p class="time">600</p>
+      <p class="unit">seconds</p>
+    </div>
+    <!-- <div class=continue> -->
+      <a href="https://google.com" target="_blank" class="continue">Continuar Navegando</a>
+    <!-- </div> -->
+    <a routerLink="../login" routerLinkActive="active" class="logout">Logout</a>          
+  </footer>
+</div>
