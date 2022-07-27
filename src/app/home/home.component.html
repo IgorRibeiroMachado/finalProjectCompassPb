@@ -6,10 +6,10 @@
       <p class="date">{{dateTimeNow.diaWord}}, {{dateTimeNow.diaNumber}} de {{dateTimeNow.mes}} de {{dateTimeNow.ano}}</p>
     </div>
     <div id="temperature-container">
-      <p>Passo Fundo - RS</p>
+      <p>{{city}} - {{state}}</p>
       <div class="temperature">
         <img src="assets/imgs/cloud.png">
-        <p>22°</p>
+        <p>{{temp}}°</p>
       </div>
     </div>
   </header>
@@ -32,7 +32,7 @@
     </p>
     <p class="refresh-message">Application refresh in</p>
     <div class="timer">
-      <p class="time">600</p>
+      <p class="timer-number">{{timer}}</p>
       <p class="unit">seconds</p>
     </div>
     <!-- <div class=continue> -->
