@@ -3,14 +3,14 @@
     <div class="login-container">
       <h1>Olá,</h1>
       <p>Para continuar navegando de forma segura, efetue o login na rede.</p>
-      <form 
-        class="login-form" 
+      <form
+        class="login-form"
         [formGroup]="loginForm"
         (ngSubmit)="validate()"
         (ngSubmit)="changeColor()"
         >
         <h2>Login</h2>
-        <div class="login-input">
+        <div class="login-input user-input">
           <input
             (change)="moveIcons()"
             [@warning]="isYellow ? 'yellow' : 'normal'"
@@ -21,7 +21,7 @@
           [@moveIcon]="isMove ? 'moveIn' : 'moveOut'"
           class="user-icon" src="../../assets/icons/icon-user.svg" />
         </div>
-        <div class="login-input">
+        <div class="login-input password-input">
           <input
             (change)="moveIcons()"
             [@warning]="isYellow ? 'yellow' : 'normal'"
@@ -32,14 +32,16 @@
             class="password-icon" src="../../assets/icons/icon-password.svg"
           />
         </div>
-        <div 
+        <div
           *ngIf="!(notValidUser || notValidPassword) else errorMessage"></div>
         <button type="submit">Continuar</button>
       </form>
     </div>
   </div>
   <div class="login-right-side">
-    <img class="logo" src="assets/imgs/Logo-Compasso-Uol.svg" />
+    <div class="logo-container">
+      <img class="logo" src="assets/imgs/Logo-Compasso-Uol.svg" />
+    </div>
     <img class="back-image" src="assets/imgs/Login-Image.png" />
   </div>
 </div>
