@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
+import { getTime } from './services/get-time-now.service';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,12 @@ export class HomeComponent implements OnInit {
 
   public now = new Date();
 
-  public dateTimeNow = {
-    diaNumber: this.now.getDate(),
-    ano: this.now.getFullYear(),
-    mes: Month[this.now.getMonth()],
-    diaWord: Day[this.now.getDay()],
-    hora: this.now.getHours(),
-    min: this.now.getMinutes(),
-  }
+  dateTimeNow = this.getTime.getTimeNow();
 
   public city: any;
   public state: any;
   public temp: any;
+
   public timer = 60;
 
   takeLocation() {
@@ -34,6 +29,7 @@ export class HomeComponent implements OnInit {
       this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`).subscribe((valor) => {
         this.city = valor.data['0'].county;
         this.state = valor.data['0'].region_code;
+        this.takeWeather();
       });
     })
   }
@@ -43,6 +39,7 @@ export class HomeComponent implements OnInit {
     navigator.geolocation.getCurrentPosition((position) => {
       let longitude = position.coords.longitude;
       let latitude = position.coords.latitude;
+      /* SÂO PAULO -> '-23.5489','-46.6388' */
       this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)
         .subscribe((valor) => {
           this.temp = Math.trunc(valor.current.temp);
@@ -58,37 +55,18 @@ export class HomeComponent implements OnInit {
     }, 1000)
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private getTime: getTime
+  ) { }
 
   ngOnInit(): void {
     this.takeLocation();
-    this.takeWeather();
+    /* this.takeWeather(); */
     this.refreshPage();
   }
 
 }
 
-export enum Day {
-  'Domingo',
-  'Segunda-feira',
-  'Terça-feira',
-  'Quarta-feira',
-  'Quinta-feira',
-  'Sexta-feira',
-  'Sabádo'
-}
 
-export enum Month {
-  Janeiro,
-  Fevereiro,
-  Março,
-  Abril,
-  Maio,
-  Junho,
-  Julho,
-  Agosto,
-  Setembro,
-  Outubro,
-  Novembro,
-  Dezembro
-}

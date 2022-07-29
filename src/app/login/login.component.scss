@@ -1,6 +1,5 @@
 #login-component {
   display: flex;
-  /* max-height: 100vh; */
 
   .login-left-side {
     width: 50%;
@@ -120,9 +119,9 @@
 
 @media screen and (max-width: 1400px) and (min-width: 1000px) {
   #login-component {
-
-    height: 768px;
+    max-height: 100vh;
     overflow: hidden;
+    height: 768px;
 
     .login-container {
       h1 {
@@ -147,9 +146,9 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 425px) {
+/* @media screen and (min-width: 320px) and (max-width: 425px) { */
+@media screen and (min-width: 320px) and (max-width: 768px) {
   #login-component {
-
 
     .login-left-side {
       width: 100% !important;
@@ -245,6 +244,19 @@
           width: 82%;
           height: 69px;
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  #login-component {
+    width: 100vh;
+    height: 768px;
+    overflow-y: hidden;
+    .login-container {
+      p {
+        font-size: 24px;
       }
     }
   }
