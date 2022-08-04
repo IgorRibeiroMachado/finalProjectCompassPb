@@ -1,0 +1,111 @@
+<div id="register-component">
+  <div class="register-left-side">
+    <div class="register-container">
+      <h1>Olá,</h1>
+      <p class="registerMessage">Para continuar navegando de forma segura, efetue o registro na rede.</p>
+      <form
+        (ngSubmit)="register()"
+        class="register-form"
+        [formGroup]="registerForm"
+        >
+        <h2>Registro</h2>
+        <div class="register-input user-input">
+          <input
+          (change)="moveIcons()"
+          (input)="validateUser()"
+          [@warning]="userValid ? 'normal' : 'yellow'"
+          formControlName="user"
+          placeholder="Usuário"
+          />
+          <img
+            [@moveIcon]="isMove ? 'moveIn' : 'moveOut'"
+            class="user-icon" src="../../assets/icons/icon-user.svg" />
+        </div>
+        <div *ngIf="userValid == true; else userInvalid"></div>
+        <div class="register-input password-input">
+          <input
+            (change)="moveIcons()"
+            (input)="validatePassword()"
+            [@warning]="passwordValid ? 'normal' : 'yellow'"
+            formControlName="password"
+            placeholder="Password"
+            type="password"
+          />
+          <img
+            [@moveIcon]="isMove ? 'moveIn' : 'moveOut'"
+            class="password-icon" src="../../assets/icons/icon-password.svg"
+          />
+        </div>
+        <div *ngIf="passwordValid == true; else passwordInvalid"></div>
+        <div class="register-input password-input">
+          <input
+            (change)="moveIcons()"
+            (input)="validatePasswordConfirm()"
+            [@warning]="passwordConfirmValid ? 'normal' : 'yellow'"
+            formControlName="passwordConfirm"
+            placeholder="Confirm Password"
+            type="password"
+          />
+          <img
+            [@moveIcon]="isMove ? 'moveIn' : 'moveOut'"
+            class="password-icon" src="../../assets/icons/icon-password.svg"
+          />
+        </div>
+        <div *ngIf="passwordConfirmValid == true; else passwordConfirmInvalid"></div>
+        <button type="submit">Continuar</button>
+      </form>
+      <a class="redirectLink" routerLink="/login" routerLinkActive="active">Já tem conta ? Logue-se</a>
+    </div>
+  </div>
+  <div class="register-right-side">
+    <div class="logo-container">
+      <img class="logo" src="assets/imgs/Logo-Compasso-Uol.svg" />
+    </div>
+    <img class="back-image" src="assets/imgs/Login-Image.png" />
+  </div>
+</div>
+
+<ng-template #userInvalid>
+  <p class="errorMessage">Email inválido</p>
+</ng-template>
+
+<ng-template #passwordInvalid>
+  <p class="errorPasswordMessage">A Senha deve conter mais de 6 caracteres.</p>
+  <div class="charactersCheck">
+    <p>Incluindo um caracter:</p>
+    <ul>
+      <li>
+        <div *ngIf="passwordValidator.upperCase == false; else checkIcon">
+          <mat-icon class="icon-clear">clear</mat-icon>
+        </div>
+        <p [@passwordConfirmationColor]="passwordValidator.upperCase ? 'enter' : 'leave'">Maiúsculo</p>
+      </li>
+      <li>
+        <div *ngIf="passwordValidator.lowerCase == false; else checkIcon">
+          <mat-icon class="icon-clear">clear</mat-icon>
+        </div>
+        <p [@passwordConfirmationColor]="passwordValidator.lowerCase ? 'enter' : 'leave'">Minúsculo</p>
+      </li>
+      <li>
+        <div *ngIf="passwordValidator.number == false; else checkIcon">
+          <mat-icon class="icon-clear">clear</mat-icon>
+        </div>
+        <p [@passwordConfirmationColor]="passwordValidator.number ? 'enter' : 'leave'">Número</p>
+      </li>
+      <li>
+        <div *ngIf="passwordValidator.specialCharacter == false; else checkIcon">
+          <mat-icon class="icon-clear">clear</mat-icon>
+        </div>
+        <p [@passwordConfirmationColor]="passwordValidator.specialCharacter ? 'enter' : 'leave'">Especial</p>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #passwordConfirmInvalid>
+  <p class="errorMessage">As senhas não coincidem</p>
+</ng-template>
+
+<ng-template #checkIcon>
+  <mat-icon class="icon-check">done</mat-icon>
+</ng-template>

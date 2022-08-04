@@ -1,6 +1,6 @@
+import { FirebaseAccess } from './services/firebaseAccess.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { getTime } from './services/get-time-now.service';
 
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   dateTimeNow = this.getTime.getTimeNow();
 
-  public city: any;
+  public city = 'Loading';
   public state: any;
   public temp: any;
 
@@ -47,18 +47,30 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  teste() {
+    this.firebaseAccess.teste();
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
+    this.firebaseAccess.signOutUser();
+  }
+
   refreshPage() {
     setInterval(() => {
       this.timer--;
-      if (this.timer == 0)
+      if (this.timer == 0) {
         this.router.navigate(['/login']);
+        this.firebaseAccess.signOutUser();
+      }
     }, 1000)
   }
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private getTime: getTime
+    private getTime: getTime,
+    private firebaseAccess: FirebaseAccess
   ) { }
 
   ngOnInit(): void {

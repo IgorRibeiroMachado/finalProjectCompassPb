@@ -6,14 +6,13 @@
       <form
         class="login-form"
         [formGroup]="loginForm"
-        (ngSubmit)="validate()"
-        (ngSubmit)="changeColor()"
+        (ngSubmit)="login()"
         >
         <h2>Login</h2>
         <div class="login-input user-input">
           <input
             (change)="moveIcons()"
-            [@warning]="isYellow ? 'yellow' : 'normal'"
+            [@warning]="loginValid ? 'normal' : 'yellow'"
             formControlName="user"
             placeholder="Usuário"
           />
@@ -24,18 +23,19 @@
         <div class="login-input password-input">
           <input
             (change)="moveIcons()"
-            [@warning]="isYellow ? 'yellow' : 'normal'"
+            [@warning]="loginValid ? 'normal' : 'yellow'"
             formControlName="password"
             placeholder="Password"
+            type="password"
           />
           <img [@moveIcon]="isMove ? 'moveIn' : 'moveOut'"
             class="password-icon" src="../../assets/icons/icon-password.svg"
           />
         </div>
-        <div
-          *ngIf="!(notValidUser || notValidPassword) else errorMessage"></div>
+        <div *ngIf="loginValid == true else loginInvalid"></div>
         <button type="submit">Continuar</button>
       </form>
+      <a routerLink="/register" routerLinkActive="active">Não tem conta ? Registre-se</a>
     </div>
   </div>
   <div class="login-right-side">
@@ -46,6 +46,8 @@
   </div>
 </div>
 
-<ng-template #errorMessage>
+<ng-template #loginInvalid>
   <p class="errorMessage">Ops, usuário ou senha inválidos. Tente novamente!</p>
 </ng-template>
+
+

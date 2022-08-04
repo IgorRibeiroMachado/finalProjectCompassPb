@@ -1,11 +1,13 @@
 #login-component {
   display: flex;
+  min-height: 100vh;
 
   .login-left-side {
     width: 50%;
     background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
     display: flex;
     justify-content: center;
+    padding-bottom: 20px;
 
     .login-container {
       width: 50%;
@@ -49,6 +51,7 @@
             margin-right: 18px;
             background: #26292C;
             padding: 20px;
+            padding-right: 46px;
             box-sizing: border-box;
             font-weight: 400;
             font-size: 16px;
@@ -81,6 +84,32 @@
           transition: ease-out 200ms;
         }
 
+        .errorPasswordMessage {
+          line-height: 20.28px;
+          text-align: center;
+          font-weight: 700;
+          color: #E9B425;
+          width: 100%;
+        }
+
+        .charactersCheck {
+          color: #E9B425;
+          margin-top: 20px;
+          font-weight: 700;
+          line-height: 16px !important;
+          text-align: left;
+
+          ul {
+            li {
+              display: flex;
+              align-items: center;
+              p {
+                height: 24px;
+              }
+            }
+          }
+        }
+
         .errorMessage {
           margin: 0 auto;
           margin-top: 28px;
@@ -100,8 +129,9 @@
   .login-right-side {
     width: 50%;
     .back-image {
-      width: 100%;
-      object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
     }
     .logo-container {
       width: 50%;
@@ -117,11 +147,16 @@
   }
 }
 
+.icon-clear {
+  color: red;
+}
+.icon-check {
+  color: green;
+}
+
 @media screen and (max-width: 1400px) and (min-width: 1000px) {
   #login-component {
-    max-height: 100vh;
-    overflow: hidden;
-    height: 768px;
+    min-height: 100vh;
 
     .login-container {
       h1 {
@@ -139,7 +174,7 @@
 
         button {
           margin-top: 60px !important;
-          margin-bottom: 100px;
+          margin-bottom: 20px;
         }
       }
     }

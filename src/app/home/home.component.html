@@ -14,7 +14,7 @@
     </div>
   </header>
   <main>
-    <img class="bola-compass" src="assets/imgs/Bola-Compasso.png">
+    <img (click)="teste()" class="bola-compass" src="assets/imgs/Bola-Compasso.png">
     <div class="texts">
       <div class="text-1">
         <p>Our Mission is</p>
@@ -45,6 +45,6 @@
       <p class="unit">seconds</p>
     </div>
     <a href="https://google.com" target="_blank" class="continue">Continuar Navegando</a>
-    <a routerLink="../login" routerLinkActive="active" class="logout">Logout</a>
+    <a (click)="logout()" class="logout">Logout</a>
   </footer>
 </div>
