@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   public state: any;
   public temp: any;
 
-  public timer = 60;
+  public timer = 10;
 
   takeLocation() {
     const apiKey = 'ac12d8103b6346bf57264097f5692010';
