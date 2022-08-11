@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class getTime {
+export class getTimeService {
 
   private now = new Date();
 
-  getTimeNow() {
+  public getTimeNow() {
     let hora = `${this.now.getHours()}`;
     let min = `${this.now.getMinutes()}`;
 

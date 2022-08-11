@@ -44,12 +44,6 @@ export class FirebaseAccess {
       console.log('Não deu pra deslogar :(');
     })
   }
-
-  public teste() {
-    console.log(this.auth);
-  }
-
-
   constructor(private router: Router) { }
 }
 

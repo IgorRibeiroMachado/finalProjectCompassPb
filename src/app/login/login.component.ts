@@ -35,8 +35,6 @@ import { FirebaseAccess } from '../home/services/firebaseAccess.service';
 })
 
 export class LoginComponent implements OnInit {
-
-
   loginForm = new FormGroup({
     user: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -54,7 +52,8 @@ export class LoginComponent implements OnInit {
   }
 
   moveIcons() {
-    if (this.loginForm.controls['user'].value || this.loginForm.controls['password'].value) {
+    if (this.loginForm.controls['user'].value
+     || this.loginForm.controls['password'].value) {
       this.isMove = true;
     } else {
       this.isMove = false;
@@ -62,14 +61,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.firebaseAccess.signInUser(this.loginForm.controls['user'].value, this.loginForm.controls['password'].value)
+    this.firebaseAccess.signInUser(this.loginForm.controls['user']
+      .value, this.loginForm.controls['password'].value)
     .then((userCredential) => {
       this.loginValid = true;
       this.router.navigate(['/home']);
     })
     .catch((error) => {
       this.loginValid = false;
-      console.log(`Codígo de erro: ${error.code}! Mensagem: ${error.message}`);
+      console.log(`Codígo de erro: ${error.code}!
+      Mensagem: ${error.message}`);
     })
   }
 
@@ -81,5 +82,4 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

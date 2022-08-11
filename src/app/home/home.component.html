@@ -6,7 +6,7 @@
       <p class="date">{{dateTimeNow.diaWord}}, {{dateTimeNow.diaNumber}} de {{dateTimeNow.mes}} de {{dateTimeNow.ano}}</p>
     </div>
     <div id="temperature-container">
-      <p>{{city}} - {{state}}</p>
+      <p class="cityState">{{city}} - {{state}}</p>
       <div class="temperature">
         <img src="assets/imgs/cloud.png">
         <p>{{temp}}°</p>
@@ -14,7 +14,7 @@
     </div>
   </header>
   <main>
-    <img (click)="teste()" class="bola-compass" src="assets/imgs/Bola-Compasso.png">
+    <img class="bola-compass" src="assets/imgs/Bola-Compasso.png">
     <div class="texts">
       <div class="text-1">
         <p>Our Mission is</p>
