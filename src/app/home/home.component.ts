@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
   public city = 'Loading';
   public state: any;
   public temp: any;
-  public timer = 600;
+
+  public timer = 60;
 
   takeLocation() {
     const apiKey = 'ac12d8103b6346bf57264097f5692010';
