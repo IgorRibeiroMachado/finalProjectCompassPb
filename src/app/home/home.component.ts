@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
       });
     })
   }
- 
+
   takeWeather() {
     const apiKey = 'cad6085cce14e33a2bbf4128b5268373';
     navigator.geolocation.getCurrentPosition((position) => {
