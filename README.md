@@ -1,27 +1,24 @@
+# ![compassLogo](https://compass.uol/etc.clientlibs/compass/clientlibs/clientlib-react/resources/static/media/logo.d35fe3b1.svg)
+
+<img src="https://img.shields.io/github/issues/IgorRibeiroMachado/finalProjectCompassPb"> <img src="https://img.shields.io/github/forks/IgorRibeiroMachado/finalProjectCompassPb"> <img src="	https://img.shields.io/github/forks/IgorRibeiroMachado/finalProjectCompassPb"> <img src="https://img.shields.io/github/stars/IgorRibeiroMachado/finalProjectCompassPb"> <img src="https://img.shields.io/github/license/IgorRibeiroMachado/finalProjectCompassPb">
+
 # FinalPbProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+This project was generated with Angular version 14.1.0.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The project was developed in the end of internship at the Compass Uol.
 
-## Code scaffolding
+## How to use
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+After clone the repository use `npm install` to install necessary dependencies.
+Run `ng serve` to run local server. Use localhost:4200 in the browser url to access the application.
 
-## Build
+## Running unit Tests
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run testing with `ng test`. It was used <a href="https://jasmine.github.io/">Jasmine<a> Framework to build the tests.
 
-## Running unit tests
+## Conclusion
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The project is in development.
