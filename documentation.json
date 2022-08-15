@@ -1,0 +1,2256 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "User",
+            "id": "interface-User-9c7e5f1bbbab702cb032307d130876cb68969b0cd4eedef32a0c8cad8081a54e5f8f577ed6ad4539c1b99a1d246cb34031d198c2ea8eba440e64e91b14f01fdc",
+            "file": "src/stories/User.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface User {}\n",
+            "properties": [],
+            "indexSignatures": [],
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "FirebaseAccess",
+            "id": "injectable-FirebaseAccess-4626ef73d5fccd30951675a462aaf8706bdb9cac89e43de00daa99348091bad45d0a327f46b5136dca92996687eeda538774e7f7d53f84e5a4c3245bae5782a1",
+            "file": "src/app/home/services/firebaseAccess.service.ts",
+            "properties": [
+                {
+                    "name": "app",
+                    "defaultValue": "initializeApp(this.firebaseConfig)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "auth",
+                    "defaultValue": "getAuth()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "firebaseConfig",
+                    "defaultValue": "{\r\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\r\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\r\n    projectId: \"finalprojectangular-bd4f1\",\r\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\r\n    messagingSenderId: \"114691533755\",\r\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\r\n    measurementId: \"G-QFH041HDEW\"\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "createNewUser",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "signInUser",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "signOutUser",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { initializeApp } from 'firebase/app';\r\nimport { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from 'firebase/auth';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class FirebaseAccess {\r\n\r\n  private firebaseConfig = {\r\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\r\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\r\n    projectId: \"finalprojectangular-bd4f1\",\r\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\r\n    messagingSenderId: \"114691533755\",\r\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\r\n    measurementId: \"G-QFH041HDEW\"\r\n  };\r\n\r\n  private app = initializeApp(this.firebaseConfig);\r\n\r\n  public auth = getAuth();\r\n\r\n  public createNewUser(email: any, password: any) {\r\n    createUserWithEmailAndPassword(this.auth, email, password)\r\n      .then((userCredential) => {\r\n        this.router.navigate(['/home']);\r\n      })\r\n      .catch((error) => {\r\n        console.log(`Codígo de erro: ${error.code}! Mensagem: ${error.message}`);\r\n      })\r\n  }\r\n\r\n  public signInUser(email: any, password: any) {\r\n    return signInWithEmailAndPassword(this.auth, email, password);\r\n  }\r\n\r\n  public signOutUser() {\r\n    signOut(this.auth).then(() => {\r\n      console.log('Deslogado com sucesso!');\r\n    })\r\n    .catch((error) => {\r\n      console.log('Não deu pra deslogar :(');\r\n    })\r\n  }\r\n  constructor(private router: Router) { }\r\n}\r\n\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 46,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "getTimeService",
+            "id": "injectable-getTimeService-b8795accdbeb36f3d3225f13e4fc47fc1894f9f11088e6f52eb808d3bb93b6b92bd2fdd0d80102b7ba7244909a090c6bcf1a5316e52e7d609e5aa03c9bcf8aed",
+            "file": "src/app/home/services/get-time-now.service.ts",
+            "properties": [
+                {
+                    "name": "now",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getTimeNow",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{ diaNumber: any; ano: any; mes: string; diaWord: string; hora: string; min: string; }",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class getTimeService {\r\n\r\n  private now = new Date();\r\n\r\n  public getTimeNow() {\r\n    let hora = `${this.now.getHours()}`;\r\n    let min = `${this.now.getMinutes()}`;\r\n\r\n    if (hora.length == 1) {\r\n      hora = `0${hora}`;\r\n    }\r\n    if (min.length == 1) {\r\n      min = `0${min}`;\r\n    }\r\n\r\n    const dateTimeNow = {\r\n      diaNumber: this.now.getDate(),\r\n      ano: this.now.getFullYear(),\r\n      mes: Month[this.now.getMonth()],\r\n      diaWord: Day[this.now.getDay()],\r\n      hora,\r\n      min,\r\n    }\r\n\r\n    return dateTimeNow;\r\n  }\r\n\r\n  constructor() { }\r\n}\r\n\r\nexport enum Day {\r\n  'Domingo',\r\n  'Segunda-feira',\r\n  'Terça-feira',\r\n  'Quarta-feira',\r\n  'Quinta-feira',\r\n  'Sexta-feira',\r\n  'Sabádo'\r\n}\r\n\r\nexport enum Month {\r\n  Janeiro,\r\n  Fevereiro,\r\n  Março,\r\n  Abril,\r\n  Maio,\r\n  Junho,\r\n  Julho,\r\n  Agosto,\r\n  Setembro,\r\n  Outubro,\r\n  Novembro,\r\n  Dezembro\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 31
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "WeatherService",
+            "id": "injectable-WeatherService-580e2a137858434dede63ddd4f27f3ecfdfe66c71e72388e22d02e7c5acfdab3a150f90c0273c010b8c85a9984e93c0cb1abcaa3b2f969e029a9bd180cb6e363",
+            "file": "src/app/home/services/weather.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "takeLocation",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "takeTemperature",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\nexport class WeatherService {\r\n\r\n  takeTemperature() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          console.log(valor);\r\n        });\r\n    })\r\n  }\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`)\r\n        .subscribe((valor) => {\r\n          console.log(valor);\r\n      });\r\n    })\r\n  }\r\n\r\n  /* takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`)\r\n        .subscribe((valor) => {\r\n          //this.city = valor.data['0'].county;\r\n          //this.state = valor.data['0'].region_code;\r\n          //this.takeWeather();\r\n      });\r\n    })\r\n  } */\r\n\r\n  /* takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          //this.temp = Math.trunc(valor.current.temp);\r\n        })\r\n    })\r\n  } */\r\n\r\n  constructor(private http: HttpClient) { }\r\n}\r\n\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 32,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-a1ec05fc7332e1c84579768406343ce0790e5ac9e0b36326300c17f07421347dcac557ce9d13fe70aa5b6015156f0974043b0701cecf6829ca71760df27c48dc",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'finalPbProject'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n  title = 'finalPbProject';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.css"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<router-outlet></router-outlet>"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 711,
+                            "end": 724,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 325,
+                            "tagName": {
+                                "pos": 712,
+                                "end": 720,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 40,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 46,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-button {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border: none !important;\n  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\n  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\n  transition: ease-out 200ms;\n  line-height: 22.82px;\n  border-radius: 50px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.storybook-button--primary {\n  color: #FFF;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n.storybook-button--large {\n  width: 379px;\n  height: 67px;\n  color: #FFF;\n  font-size: 18px;\n  width: 379px;\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 48
+                    }
+                }
+            }
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-8b7cc9d9cf8701d8cf09202220c73a03581f2b44f5b3e960f9c779d9b0e04274b46f41ed3cc0c058a11f5563460cc4d2dc273d406fe70a9d0e9b9efe855e2efe",
+            "file": "src/app/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [
+                "./home.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "city",
+                    "defaultValue": "'Loading'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "dateTimeNow",
+                    "defaultValue": "this.getTime.getTimeNow()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "state",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "temp",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "timer",
+                    "defaultValue": "60",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 71,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "refreshPage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "takeLocation",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "takeWeather",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { FirebaseAccess } from './services/firebaseAccess.service';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { HttpClient} from '@angular/common/http';\r\nimport { Router } from '@angular/router';\r\nimport { getTimeService } from './services/get-time-now.service';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit {\r\n\r\n  dateTimeNow = this.getTime.getTimeNow();\r\n\r\n  public city = 'Loading';\r\n  public state: any;\r\n  public temp: any;\r\n\r\n  public timer = 60;\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`).subscribe((valor) => {\r\n        this.city = valor.data['0'].county;\r\n        this.state = valor.data['0'].region_code;\r\n        console.log(valor);\r\n        this.takeWeather();\r\n      });\r\n    })\r\n  }\r\n\r\n  takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          this.temp = Math.trunc(valor.current.temp);\r\n          console.log(valor);\r\n        })\r\n    })\r\n  }\r\n\r\n  logout() {\r\n    this.router.navigate(['/login']);\r\n    this.firebaseAccess.signOutUser();\r\n  }\r\n\r\n  refreshPage() {\r\n    setInterval(() => {\r\n      this.timer--;\r\n      if (this.timer == 0) {\r\n        this.router.navigate(['/login']);\r\n        this.firebaseAccess.signOutUser();\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    private router: Router,\r\n    private getTime: getTimeService,\r\n    private firebaseAccess: FirebaseAccess,\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.takeLocation();\r\n    /* this.takeWeather(); */\r\n    this.refreshPage();\r\n  }\r\n\r\n}\r\n\r\n\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "#homeComponent {\r\n  background: linear-gradient(105.96deg, #FFFFFF 0%, #F0F0F0 97.86%);\r\n  box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);\r\n  min-height: 100vh;\r\n  \r\n  header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    height: 163px;\r\n    color: #222222;\r\n    margin-bottom: 59px;\r\n\r\n    .logo-compasso {\r\n      /* width: 7.81%; */\r\n      width: 150px;\r\n      /* height: 4%; */\r\n      height: 42.75px;\r\n      margin-left: 40px;\r\n      margin-top: 25px;\r\n    }\r\n\r\n    #dateTime {\r\n      margin-top: 20px;\r\n      text-align: center;\r\n      display: flex;\r\n      flex-direction: column;\r\n      width: 17.03%;\r\n      .hour {\r\n        font-weight: 700;\r\n        font-size: 144px;\r\n        height: 126px;\r\n        width: 100.6%;\r\n      }\r\n      .date {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 17.75px;\r\n      }\r\n    }\r\n\r\n    #temperature-container {\r\n      margin-top: 25px;\r\n      margin-right: 41px;\r\n      width: 6.31%;\r\n      height: 78px;\r\n      text-align: center;\r\n\r\n      p {\r\n        line-height: 17.75px;\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n      }\r\n\r\n      .temperature {\r\n        display: flex;\r\n        margin-top: 12px;\r\n        img {\r\n          width: 60%;\r\n          height: 60%;\r\n        }\r\n\r\n        p {\r\n          margin-left: 12px;\r\n          font-weight: 700;\r\n          font-size: 48px;\r\n          line-height: 60.84px;\r\n        }\r\n\r\n      }\r\n    }\r\n  }\r\n\r\n  main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    text-align: end;\r\n\r\n    .texts {\r\n      margin-top: 102.96px;\r\n      margin-right: 134px;\r\n\r\n      p {\r\n        font-family: 'mark-pro-bold';\r\n        color: #C12D18;\r\n        font-weight: 700;\r\n        font-size: 64px;\r\n        line-height: 61.12px;\r\n      }\r\n\r\n      span {\r\n        color: #222;\r\n        font-weight: 400;\r\n        font-size: 24px;\r\n      }\r\n\r\n      div {\r\n        margin-bottom: 20px;\r\n      }\r\n\r\n      .text-1 {\r\n        p {\r\n          font-size: 36px !important;\r\n          line-height: 35.63px !important;\r\n        }\r\n      }\r\n\r\n      .text-4 {\r\n        p {\r\n          margin-right: 26px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  footer {\r\n    display: flex;\r\n    height: 100px;\r\n    width: 100%;\r\n    background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);\r\n    color: #FFFFFF;\r\n\r\n    .footer-message {\r\n      margin-left: 354px;\r\n      margin-right: 35px;\r\n      margin-top: 33px;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 28.2%;\r\n      height: 58px;\r\n      text-align: end;\r\n    }\r\n\r\n    .barrinha {\r\n      height: 61px;\r\n      margin-top: 17px;\r\n      width: 1px;\r\n      background-color: #FFF;\r\n    }\r\n\r\n    .refresh-message {\r\n      margin-left: 123px;\r\n      margin-top: 32px;\r\n      width: 109px;\r\n      font-weight: 400;\r\n      font-size: 14px;\r\n      line-height: 17.75px;\r\n      text-align: end;\r\n    }\r\n\r\n    .timer {\r\n      margin-top: 9px;\r\n      margin-left: 33px;\r\n      margin-right: 409px;\r\n      text-align: center;\r\n      .timer-number {\r\n        margin-top: 9px;\r\n        font-weight: 700;\r\n        font-size: 48px;\r\n        line-height: 50.84px;\r\n      }\r\n\r\n      .unit {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 8.75px;\r\n      }\r\n    }\r\n\r\n    .continue {\r\n      padding: 36px 18px;\r\n      background-color: #FFF;\r\n      color: #C13216 !important;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 95px;\r\n      height: 28px;\r\n      text-align: center;\r\n    }\r\n\r\n    .logout {\r\n      padding: 42px 23px;\r\n      width: 69px;\r\n      height: 35px;\r\n      font-weight: 700;\r\n      font-size: 12px;\r\n      line-height: 15.21px;\r\n      text-align: center;\r\n    }\r\n  }\r\n\r\n}\r\n\r\n@media screen and (min-width: 1400px) and (max-width: 2000px) {\r\n  #homeComponent {\r\n    footer {\r\n      .timer {\r\n        margin-right: 460px !important;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1000px) and (max-width: 1400px) {\r\n  #homeComponent {\r\n    header {\r\n      margin-bottom: 19px;\r\n      #dateTime {\r\n        .hour {\r\n          font-size: 90px;\r\n          height: 80px;\r\n        }\r\n      }\r\n      #temperature-container {\r\n        margin-right: 40px;\r\n        p {\r\n          width: 100px;\r\n        }\r\n        .temperature {\r\n          margin-top: 4px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 26px;\r\n            margin-left: 6px;\r\n            line-height: 30px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      .bola-compass {\r\n        width: 27%;\r\n        height: 400px;\r\n      }\r\n\r\n      .texts {\r\n        margin-top: 0px;\r\n        p {\r\n          font-size: 42px;\r\n          line-height: 34px;\r\n        }\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n      }\r\n\r\n    }\r\n\r\n    footer {\r\n      max-height: 80px;\r\n\r\n      .footer-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n        width: 40%;\r\n      }\r\n\r\n      .barrinha {\r\n        margin-top: 8px;\r\n        height: 48px;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n      }\r\n\r\n      .timer {\r\n        margin-left: 40px;\r\n        margin-right: 220px;\r\n        .timer-number {\r\n          font-size: 32px;\r\n          line-height: 30px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 24px 16px;\r\n      }\r\n\r\n      .logout {\r\n        padding: 30px 16px 10px 16px;\r\n      }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 320px) and (max-width: 768px) {\r\n  #homeComponent {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: space-between;\r\n    min-height: 100vh;\r\n    header {\r\n      justify-content: space-between;\r\n      margin: 0;\r\n      padding-top: 10px;\r\n      .logo-compasso {\r\n        max-width: 40%;\r\n        margin: 0;\r\n        margin-left: 10px;\r\n      }\r\n      #dateTime {\r\n        display: none;\r\n      }\r\n      #temperature-container {\r\n        width: 100px;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-right: 10px;\r\n        p {\r\n          font-size: 14px;\r\n        }\r\n        .temperature {\r\n          margin: 0;\r\n          padding-left: 10px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 16px;\r\n            line-height: 20px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      margin: 0 auto;\r\n      display: flex;\r\n      justify-content: center;\r\n      .bola-compass {\r\n        display: none;\r\n      }\r\n      \r\n      .texts {\r\n        width: 90%;\r\n        margin: 0 auto;\r\n        margin-bottom: 80px;\r\n        p {\r\n          font-size: 24px;\r\n          line-height: 30px;\r\n        }\r\n\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n\r\n        .text-4 {\r\n          p {\r\n            margin: 0;\r\n          }\r\n        }\r\n\r\n      }\r\n    }\r\n\r\n    footer {\r\n      flex-direction: column;\r\n      align-items: center;\r\n      height: auto;\r\n\r\n      .footer-message {\r\n        width: 96%;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-bottom: 10px;\r\n        text-align: left;\r\n        font-size: 12px;\r\n        text-align: center;\r\n      }\r\n\r\n      .barrinha {\r\n        display: none;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin: 0;\r\n        padding-top: 10px;\r\n        font-size: 16px;\r\n        text-align: center;\r\n        width: 300px;\r\n      }\r\n\r\n      .timer {\r\n        margin: 0;\r\n        margin-bottom: 10px;\r\n        .timer-number {\r\n          font-size: 16px;\r\n          line-height: 20px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n      \r\n      .logout {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+                    "styleUrl": "./home.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "getTime",
+                        "type": "getTimeService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 62,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "getTime",
+                        "type": "getTimeService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div id=\"homeComponent\">\n  <header>\n    <img class=\"logo-compasso\" src=\"assets/imgs/Logo-Compasso-Black.svg\">\n    <div id=\"dateTime\">\n      <p class=\"hour\">{{dateTimeNow.hora}}:{{dateTimeNow.min}}</p>\n      <p class=\"date\">{{dateTimeNow.diaWord}}, {{dateTimeNow.diaNumber}} de {{dateTimeNow.mes}} de {{dateTimeNow.ano}}</p>\n    </div>\n    <div id=\"temperature-container\">\n      <p class=\"cityState\">{{city}} - {{state}}</p>\n      <div class=\"temperature\">\n        <img src=\"assets/imgs/cloud.png\">\n        <p>{{temp}}°</p>\n      </div>\n    </div>\n  </header>\n  <main>\n    <img class=\"bola-compass\" src=\"assets/imgs/Bola-Compasso.png\">\n    <div class=\"texts\">\n      <div class=\"text-1\">\n        <p>Our Mission is</p>\n        <span>Nossa missão é</span>\n      </div>\n      <div class=\"text-2\">\n        <p>to transform the world</p>\n        <span>transformar o mundo</span>\n      </div>\n      <div class=\"text-3\">\n        <p>building digital experiences</p>\n        <span>construindo experiências digitais</span>\n      </div>\n      <div class=\"text-4\">\n        <p>that enable our client's growth</p>\n        <span>que permitam o crescimento dos nossos clientes</span>\n      </div>\n    </div>\n  </main>\n  <footer>\n    <p class=\"footer-message\">Essa janela do navegador é usada para manter sua sessão de autenticação ativa. Deixa-a\n      aberta em segundo plano e abra uma nova janela para continuar a navegar.\n    </p>\n    <span class=\"barrinha\"></span>\n    <p class=\"refresh-message\">Application refresh in</p>\n    <div class=\"timer\">\n      <p class=\"timer-number\">{{timer}}</p>\n      <p class=\"unit\">seconds</p>\n    </div>\n    <a href=\"https://google.com\" target=\"_blank\" class=\"continue\">Continuar Navegando</a>\n    <a (click)=\"logout()\" class=\"logout\">Logout</a>\n  </footer>\n</div>\n"
+        },
+        {
+            "name": "InputComponent",
+            "id": "component-InputComponent-63ae3675a44a3cbeed8ec590d1696071848328a8d7877f62a8dae1a0a1c7ca77a39380be4275578311df45a915f048beff03a74be1e0b778091c93597bd64bcd",
+            "file": "src/stories/input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-input",
+            "styleUrls": [
+                "./input.css"
+            ],
+            "styles": [],
+            "template": "<input   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n   [placeholder]=\"label\"\n >",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Usuário'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 31,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-input',\n  template: ` <input\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n    [placeholder]=\"label\"\n  >`,\n  styleUrls: ['./input.css'],\n})\nexport default class InputComponent {\n  \n  @Input()\n  primary = false;\n\n  @Input()\n  backgroundColor?: string;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Usuário';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-input--primary' : 'storybook-input--secondary';\n\n    return ['storybook-input', `storybook-input--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-input {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-radius: 50px;\n  background: #26292C;\n  box-sizing: border-box;\n  font-weight: 400;\n  border: solid 1px #FFF !important;\n  color: #E0E0E0;\n}\n.storybook-input--primary {\n  color: #E0E0E0;\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n\n.storybook-input--large {\n  width: 379px;\n  height: 60px;\n  padding: 20px;\n  padding-right: 46px;\n  font-size: 16px;\n  line-height: 20.28px;\n}\n",
+                    "styleUrl": "./input.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 33
+                    }
+                }
+            }
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-59a32aa135ee4c00448033c9ab25e3fbe89f3f8fecfc8342338beb93f20c5e6944bddfeffb2ad92ca8fe978343513cfde0199afed36491df1468eab8b3516cd0",
+            "file": "src/app/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "isMove",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "loginForm",
+                    "defaultValue": "new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                },
+                {
+                    "name": "loginValid",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43
+                },
+                {
+                    "name": "passwordValidator",
+                    "defaultValue": "{\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 47
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "login",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "moveIcons",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 83,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';\r\nimport { Router } from '@angular/router';\r\nimport { FirebaseAccess } from '../home/services/firebaseAccess.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('moveIcon', [\r\n      state('moveIn', style({\r\n        right: 140,\r\n      })),\r\n      state('moveOut', style({\r\n        right: 85\r\n      })),\r\n      transition('moveOut <=> moveIn', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n  ]\r\n})\r\n\r\nexport class LoginComponent implements OnInit {\r\n  loginForm = new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })\r\n\r\n  loginValid = true;\r\n\r\n  isMove = false;\r\n\r\n  passwordValidator = {\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }\r\n\r\n  moveIcons() {\r\n    if (this.loginForm.controls['user'].value\r\n     || this.loginForm.controls['password'].value) {\r\n      this.isMove = true;\r\n    } else {\r\n      this.isMove = false;\r\n    }\r\n  }\r\n\r\n  login() {\r\n    this.firebaseAccess.signInUser(this.loginForm.controls['user']\r\n      .value, this.loginForm.controls['password'].value)\r\n    .then((userCredential) => {\r\n      this.loginValid = true;\r\n      this.router.navigate(['/home']);\r\n    })\r\n    .catch((error) => {\r\n      this.loginValid = false;\r\n      console.log(`Codígo de erro: ${error.code}!\r\n      Mensagem: ${error.message}`);\r\n    })\r\n  }\r\n\r\n  constructor(\r\n    private formBuilder: FormBuilder,\r\n    private router: Router,\r\n    private firebaseAccess: FirebaseAccess\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "#login-component {\r\n  display: flex;\r\n  min-height: 100vh;\r\n\r\n  .login-left-side {\r\n    width: 50%;\r\n    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);\r\n    display: flex;\r\n    justify-content: center;\r\n    padding-bottom: 20px;\r\n\r\n    .login-container {\r\n      width: 50%;\r\n      color: #E0E0E0;\r\n\r\n      h1 {\r\n        width: 118px;\r\n        margin-top: 197px;\r\n        font-weight: 400;\r\n        font-size: 60px;\r\n        line-height: 76.05px;\r\n      }\r\n\r\n      p {\r\n        width: 301px;\r\n        margin-top: 17px;\r\n        font-weight: 400;\r\n        font-size: 16px;\r\n        line-height: 20.28px;\r\n      }\r\n\r\n      .login-form {\r\n        margin-top: 135px;\r\n        width: 379px;\r\n        h2 {\r\n          font-weight: 400;\r\n          font-size: 30px;\r\n          line-height: 38.03px;\r\n        }\r\n\r\n        .login-input {\r\n          margin-top: 32px;\r\n          width: 500px;\r\n          position: relative;\r\n\r\n          input {\r\n            border-radius: 50px;\r\n            width: 379px;\r\n            height: 60px;\r\n            border: solid 1px #FFF;\r\n            margin-right: 18px;\r\n            background: #26292C;\r\n            padding: 20px;\r\n            padding-right: 46px;\r\n            box-sizing: border-box;\r\n            font-weight: 400;\r\n            font-size: 16px;\r\n            line-height: 20.28px;\r\n            color: #E0E0E0;\r\n          }\r\n\r\n          .user-icon, .password-icon {\r\n            position: absolute;\r\n            right: 20;\r\n            top: 14px;\r\n          }\r\n\r\n        }\r\n\r\n        button {\r\n          margin-top: 115px;\r\n          margin-bottom: 20px;\r\n          width: 379px;\r\n          height: 67px;\r\n          color: #FFF;\r\n          font-size: 18px;\r\n          line-height: 22.82px;\r\n          font-weight: 700;\r\n          border-radius: 50px;\r\n          background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\r\n          border: none;\r\n          border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\r\n          filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\r\n          box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\r\n          transition: ease-out 200ms;\r\n        }\r\n\r\n        .errorPasswordMessage {\r\n          line-height: 20.28px;\r\n          text-align: center;\r\n          font-weight: 700;\r\n          color: #E9B425;\r\n          width: 100%;\r\n        }\r\n\r\n        .charactersCheck {\r\n          color: #E9B425;\r\n          margin-top: 20px;\r\n          font-weight: 700;\r\n          line-height: 16px !important;\r\n          text-align: left;\r\n\r\n          ul {\r\n            li {\r\n              display: flex;\r\n              align-items: center;\r\n              p {\r\n                height: 24px;\r\n              }\r\n            }\r\n          }\r\n        }\r\n\r\n        .errorMessage {\r\n          margin: 0 auto;\r\n          margin-top: 28px;\r\n          width: 283px;\r\n          line-height: 20.28px;\r\n          font-size: 16px;\r\n          text-align: center;\r\n          font-weight: 700;\r\n          color: #E9B425;\r\n          align-self: center;\r\n        }\r\n\r\n      }\r\n\r\n      .link {\r\n        color: #FF2D04;\r\n      }\r\n\r\n    }\r\n  }\r\n\r\n  .login-right-side {\r\n    width: 50%;\r\n    .back-image {\r\n        width: 100%;\r\n        height: 100%;\r\n        object-fit: fill;\r\n    }\r\n    .logo-container {\r\n      width: 50%;\r\n      position: absolute;\r\n      display: flex;\r\n      justify-content: center;\r\n      .logo {\r\n        margin-top: 35px;\r\n        width: 306px;\r\n        height: 69px;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n.icon-clear {\r\n  color: red;\r\n}\r\n.icon-check {\r\n  color: green;\r\n}\r\n\r\n@media screen and (max-width: 1400px) and (min-width: 1000px) {\r\n  #login-component {\r\n    min-height: 100vh;\r\n\r\n    .login-container {\r\n      h1 {\r\n        margin-top: 40px !important;\r\n      }\r\n      p {\r\n        margin-top: 8px !important;\r\n      }\r\n\r\n      .login-form {\r\n        margin-top: 80px !important;\r\n        .login-input {\r\n          margin-top: 16px !important;\r\n        }\r\n\r\n        button {\r\n          margin-top: 60px !important;\r\n          margin-bottom: 20px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n/* @media screen and (min-width: 320px) and (max-width: 425px) { */\r\n@media screen and (min-width: 320px) and (max-width: 768px) {\r\n  #login-component {\r\n\r\n    .login-left-side {\r\n      width: 100% !important;\r\n\r\n      .login-container {\r\n        width: 80% !important;\r\n\r\n        h1 {\r\n          margin-top: 180px;\r\n          width: 118px;\r\n        }\r\n\r\n        p {\r\n          width: 301px;\r\n          width: 100%;\r\n          margin-top: 17px;\r\n        }\r\n\r\n        .login-form {\r\n          margin-top: 100px;\r\n          width: 100%;\r\n\r\n          .user-input {\r\n            &:before {\r\n              background: url(\"../../assets/icons/icon-user.svg\") center / contain no-repeat;\r\n            }\r\n          }\r\n\r\n          .password-input {\r\n            &:before {\r\n              background: url(\"../../assets/icons/icon-password.svg\") center / contain no-repeat;\r\n            }\r\n          }\r\n\r\n          .login-input {\r\n            margin-top: 32px;\r\n            width: 100%;\r\n            position: relative;\r\n\r\n            &:before {\r\n              content: \"\";\r\n              position: absolute;\r\n              right: 20px;\r\n              top: 0;\r\n              bottom: 0;\r\n              width: 20px;\r\n            }\r\n\r\n            input {\r\n              border-radius: 50px;\r\n              width: 100%;\r\n              height: 60px;\r\n            }\r\n\r\n            .user-icon, .password-icon {\r\n              display: none;\r\n            }\r\n\r\n          }\r\n\r\n          button {\r\n            margin-top: 55px;\r\n            width: 100%;\r\n            height: 67px;\r\n            margin-bottom: 20px;\r\n          }\r\n\r\n          .errorMessage {\r\n            margin: 0 auto;\r\n            margin-top: 28px;\r\n            width: 283px;\r\n          }\r\n\r\n        }\r\n      }\r\n    }\r\n\r\n    .login-right-side {\r\n      width: 0%;\r\n      .back-image {\r\n        display: none;\r\n      }\r\n      .logo-container {\r\n        width: 100%;\r\n        top: 0;\r\n        left: 0;\r\n        position: absolute;\r\n        display: flex;\r\n        justify-content: center;\r\n        .logo {\r\n          margin-top: 35px;\r\n          /* width: 306px; */\r\n          width: 82%;\r\n          height: 69px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) and (max-width: 1000px) {\r\n  #login-component {\r\n    width: 100vh;\r\n    height: 768px;\r\n    overflow-y: hidden;\r\n    .login-container {\r\n      p {\r\n        font-size: 24px;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 75,
+                "jsdoctags": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div id=\"login-component\">\r\n  <div class=\"login-left-side\">\r\n    <div class=\"login-container\">\r\n      <h1>Olá,</h1>\r\n      <p>Para continuar navegando de forma segura, efetue o login na rede.</p>\r\n      <form\r\n        class=\"login-form\"\r\n        [formGroup]=\"loginForm\"\r\n        (ngSubmit)=\"login()\"\r\n        >\r\n        <h2>Login</h2>\r\n        <div class=\"login-input user-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"user\"\r\n            placeholder=\"Usuário\"\r\n          />\r\n          <img\r\n          [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n          class=\"user-icon\" src=\"../../assets/icons/icon-user.svg\" />\r\n        </div>\r\n        <div class=\"login-input password-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"password\"\r\n            placeholder=\"Password\"\r\n            type=\"password\"\r\n          />\r\n          <img [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"password-icon\" src=\"../../assets/icons/icon-password.svg\"\r\n          />\r\n        </div>\r\n        <div *ngIf=\"loginValid == true else loginInvalid\"></div>\r\n        <button type=\"submit\">Continuar</button>\r\n      </form>\r\n      <a class=\"link\" routerLink=\"/register\" routerLinkActive=\"active\">Não tem conta ? Registre-se</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"login-right-side\">\r\n    <div class=\"logo-container\">\r\n      <img class=\"logo\" src=\"assets/imgs/Logo-Compasso-Uol.svg\" />\r\n    </div>\r\n    <img class=\"back-image\" src=\"assets/imgs/Login-Image.png\" />\r\n  </div>\r\n</div>\r\n\r\n<ng-template #loginInvalid>\r\n  <p class=\"errorMessage\">Ops, usuário ou senha inválidos. Tente novamente!</p>\r\n</ng-template>\r\n\r\n\r\n"
+        },
+        {
+            "name": "RegisterComponent",
+            "id": "component-RegisterComponent-9af4b94694b3dd38e104aa0fee6fd0db9152c69002fb6dd2f5b41b98e78284081295cdf3a674375f6874d4fe0a668ebf7dd0e0046c147bab019344addd7b1291",
+            "file": "src/app/register/register.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-register",
+            "styleUrls": [
+                "./register.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./register.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "isMove",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 59
+                },
+                {
+                    "name": "passwordConfirmValid",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 62
+                },
+                {
+                    "name": "passwordValid",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 61
+                },
+                {
+                    "name": "passwordValidator",
+                    "defaultValue": "{\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 52
+                },
+                {
+                    "name": "registerForm",
+                    "defaultValue": "new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46
+                },
+                {
+                    "name": "userValid",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "moveIcons",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 150,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "register",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 139,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "validatePassword",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 93,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "validatePasswordConfirm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "validateUser",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 76,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { animate, state, style, transition, trigger } from '@angular/animations';\nimport { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\nimport { FirebaseAccess } from '../home/services/firebaseAccess.service';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('moveIcon', [\n      state('moveIn', style({\n        right: 140,\n      })),\n      state('moveOut', style({\n        right: 85\n      })),\n      transition('moveOut <=> moveIn', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('passwordConfirmationColor', [\n      state('enter', style({color: 'green'})),\n      state('leave', style({color: '#e9b425'})),\n\n      transition('leave <=> enter', [\n        animate('0.2s')\n      ])\n    ])\n  ]\n})\n\nexport class RegisterComponent implements OnInit {\n\n  registerForm = new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })\n\n  passwordValidator = {\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }\n\n  isMove = false;\n  userValid = true;\n  passwordValid = true;\n  passwordConfirmValid = true;\n\n  moveIcons() {\n    if (\n      this.registerForm.controls['user'].value ||\n      this.registerForm.controls['password'].value ||\n      this.registerForm.controls['passwordConfirm'].value\n    ) {\n      this.isMove = true;\n    } else {\n      this.isMove = false;\n    }\n  }\n\n  validateUser() {\n    if (this.registerForm.controls['user'].errors) {\n      this.userValid = false;\n    } else {\n      this.userValid = true;\n    }\n  }\n\n  validatePasswordConfirm() {\n    if (this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value\n      || this.registerForm.controls['passwordConfirm'].value == '') {\n      this.passwordConfirmValid = false;\n    } else {\n      this.passwordConfirmValid = true;\n    }\n  }\n\n  validatePassword() {\n    const password = this.registerForm.controls['password'].value;\n    let checkFlag = 0;\n    if (password) {\n      // Minúscula\n      if (/[a-z]/.test(password)) {\n        this.passwordValidator.lowerCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.lowerCase = false;\n        checkFlag--;\n      }\n      // Maiuscula\n      if (/[A-Z]/.test(password)) {\n        this.passwordValidator.upperCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.upperCase = false;\n        checkFlag--;\n      }\n      // Number\n      if (/[0-9]/.test(password)) {\n        this.passwordValidator.number = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.number = false;\n        checkFlag--;\n      }\n      // Caracter Especial\n      if (/[`!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]/.test(password)) {\n        this.passwordValidator.specialCharacter = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.specialCharacter = false;\n        checkFlag--;\n      }\n    }\n    if (checkFlag == 4) {\n      if (!this.registerForm.controls['password'].errors) {\n        this.passwordValid = true;\n        return;\n      }\n    }\n    this.passwordValid = false;\n  }\n\n  register() {\n    if (this.passwordValid == true && this.userValid == true && this.passwordConfirmValid == true) {\n      this.firebaseAccess.createNewUser(\n        this.registerForm.controls['user'].value, this.registerForm.controls['password'].value\n      )\n    }\n    console.log(this.firebaseAccess.auth);\n  }\n\n  constructor(private firebaseAccess: FirebaseAccess) { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "#register-component {\r\n    display: flex;\r\n    min-height: 100vh;\r\n\r\n    .register-left-side {\r\n      width: 50%;\r\n      background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);\r\n      display: flex;\r\n      justify-content: center;\r\n\r\n      .register-container {\r\n        width: 50%;\r\n        color: #E0E0E0;\r\n        padding-bottom: 20px;\r\n\r\n        h1 {\r\n          width: 118px;\r\n          margin-top: 197px;\r\n          font-weight: 400;\r\n          font-size: 60px;\r\n          line-height: 76.05px;\r\n        }\r\n\r\n        .registerMessage {\r\n          width: 301px;\r\n          margin-top: 17px;\r\n          font-weight: 400;\r\n          font-size: 16px;\r\n          line-height: 20.28px;\r\n        }\r\n\r\n        .register-form {\r\n          margin-top: 135px;\r\n          width: 379px;\r\n          h2 {\r\n            font-weight: 400;\r\n            font-size: 30px;\r\n            line-height: 38.03px;\r\n          }\r\n\r\n          .register-input {\r\n            margin-top: 32px;\r\n            width: 500px;\r\n            position: relative;\r\n\r\n            input {\r\n              border-radius: 50px;\r\n              box-sizing: border-box;\r\n              width: 379px;\r\n              height: 60px;\r\n              border: solid 1px #FFF;\r\n              margin-right: 18px;\r\n              background: #26292C;\r\n              padding: 20px;\r\n              padding-right: 46px;\r\n              box-sizing: border-box;\r\n              font-weight: 400;\r\n              font-size: 16px;\r\n              line-height: 20.28px;\r\n              color: #E0E0E0;\r\n            }\r\n\r\n            .user-icon, .password-icon {\r\n              position: absolute;\r\n              right: 20;\r\n              top: 14px;\r\n            }\r\n\r\n          }\r\n\r\n          button {\r\n            margin-top: 115px;\r\n            margin-bottom: 20px;\r\n            width: 379px;\r\n            height: 67px;\r\n            color: #FFF;\r\n            font-size: 18px;\r\n            line-height: 22.82px;\r\n            font-weight: 700;\r\n            border-radius: 50px;\r\n            background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\r\n            border: none;\r\n            border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\r\n            filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\r\n            box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\r\n            transition: ease-out 200ms;\r\n          }\r\n\r\n            \r\n          .errorPasswordMessage {\r\n            line-height: 20.28px;\r\n            text-align: center;\r\n            font-weight: 700;\r\n            color: #E9B425;\r\n            width: 100%;\r\n          }\r\n\r\n          .charactersCheck {\r\n            color: #E9B425;\r\n            margin-top: 20px;\r\n            font-weight: 700;\r\n            line-height: 16px !important;\r\n            text-align: left;\r\n\r\n            ul {\r\n              li {\r\n                display: flex;\r\n                align-items: center;\r\n                p {\r\n                  height: 24px;\r\n                }\r\n              }\r\n\r\n            }\r\n\r\n          }\r\n            \r\n          .errorMessage {\r\n            margin: 0 auto;\r\n            margin-top: 28px;\r\n            width: 283px;\r\n            line-height: 20.28px;\r\n            font-size: 16px;\r\n            text-align: center;\r\n            font-weight: 700;\r\n            color: #E9B425;\r\n          }\r\n        }\r\n\r\n        .link {\r\n          color: #FF2D04;\r\n        }\r\n      }\r\n    }\r\n\r\n    .register-right-side {\r\n      width: 50%;\r\n      .back-image {\r\n        width: 100%;\r\n        height: 100%;\r\n        object-fit: fill;\r\n      }\r\n      .logo-container {\r\n        width: 50%;\r\n        position: absolute;\r\n        display: flex;\r\n        justify-content: center;\r\n        .logo {\r\n          margin-top: 35px;\r\n          width: 306px;\r\n          height: 69px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  .icon-clear {\r\n    color: red;\r\n  }\r\n  .icon-check {\r\n    color: green;\r\n  }\r\n\r\n  @media screen and (max-width: 1400px) and (min-width: 1000px) {\r\n    #register-component {\r\n      min-height: 100vh;\r\n\r\n      .register-container {\r\n        h1 {\r\n          margin-top: 40px !important;\r\n        }\r\n        p {\r\n          margin-top: 8px !important;\r\n        }\r\n\r\n        .register-form {\r\n          margin-top: 80px !important;\r\n          .register-input {\r\n            margin-top: 16px !important;\r\n          }\r\n\r\n          button {\r\n            margin-top: 60px !important;\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  /* @media screen and (min-width: 320px) and (max-width: 425px) { */\r\n  @media screen and (min-width: 320px) and (max-width: 768px) {\r\n    #register-component {\r\n\r\n      .register-left-side {\r\n        width: 100% !important;\r\n\r\n        .register-container {\r\n          width: 80% !important;\r\n\r\n          h1 {\r\n            margin-top: 180px;\r\n            width: 118px;\r\n          }\r\n\r\n          p {\r\n            width: 301px;\r\n            width: 100%;\r\n            margin-top: 17px;\r\n          }\r\n\r\n          .register-form {\r\n            margin-top: 100px;\r\n            width: 100%;\r\n\r\n            .user-input {\r\n              &:before {\r\n                background: url(\"../../assets/icons/icon-user.svg\") center / contain no-repeat;\r\n              }\r\n            }\r\n\r\n            .password-input {\r\n              &:before {\r\n                background: url(\"../../assets/icons/icon-password.svg\") center / contain no-repeat;\r\n              }\r\n            }\r\n\r\n            .register-input {\r\n              margin-top: 32px;\r\n              width: 100%;\r\n              position: relative;\r\n\r\n              &:before {\r\n                content: \"\";\r\n                position: absolute;\r\n                right: 20px;\r\n                top: 0;\r\n                bottom: 0;\r\n                width: 20px;\r\n              }\r\n\r\n              input {\r\n                border-radius: 50px;\r\n                width: 100%;\r\n                height: 60px;\r\n              }\r\n\r\n              .user-icon, .password-icon {\r\n                display: none;\r\n              }\r\n\r\n            }\r\n\r\n            button {\r\n              margin-top: 55px;\r\n              width: 100%;\r\n              height: 67px;\r\n              margin-bottom: 20px;\r\n            }\r\n\r\n            .errorMessage {\r\n              margin: 0 auto;\r\n              margin-top: 28px;\r\n              width: 283px;\r\n            }\r\n\r\n          }\r\n        }\r\n      }\r\n\r\n      .register-right-side {\r\n        width: 0%;\r\n        .back-image {\r\n          display: none;\r\n        }\r\n        .logo-container {\r\n          width: 100%;\r\n          top: 0;\r\n          left: 0;\r\n          position: absolute;\r\n          display: flex;\r\n          justify-content: center;\r\n          .logo {\r\n            margin-top: 35px;\r\n            /* width: 306px; */\r\n            width: 82%;\r\n            height: 69px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  @media screen and (min-width: 768px) and (max-width: 1000px) {\r\n    #register-component {\r\n      width: 100vh;\r\n      height: 768px;\r\n      overflow-y: hidden;\r\n      .register-container {\r\n        p {\r\n          font-size: 24px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n",
+                    "styleUrl": "./register.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 146,
+                "jsdoctags": [
+                    {
+                        "name": "firebaseAccess",
+                        "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div id=\"register-component\">\r\n  <div class=\"register-left-side\">\r\n    <div class=\"register-container\">\r\n      <h1>Olá,</h1>\r\n      <p class=\"registerMessage\">Para continuar navegando de forma segura, efetue o registro na rede.</p>\r\n      <form\r\n        (ngSubmit)=\"register()\"\r\n        class=\"register-form\"\r\n        [formGroup]=\"registerForm\"\r\n        >\r\n        <h2>Registro</h2>\r\n        <div class=\"register-input user-input\">\r\n          <input\r\n          (change)=\"moveIcons()\"\r\n          (input)=\"validateUser()\"\r\n          [@warning]=\"userValid ? 'normal' : 'yellow'\"\r\n          formControlName=\"user\"\r\n          placeholder=\"Usuário\"\r\n          />\r\n          <img\r\n            [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"user-icon\" src=\"../../assets/icons/icon-user.svg\" />\r\n        </div>\r\n        <div *ngIf=\"userValid == true; else userInvalid\"></div>\r\n        <div class=\"register-input password-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            (input)=\"validatePassword()\"\r\n            [@warning]=\"passwordValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"password\"\r\n            placeholder=\"Password\"\r\n            type=\"password\"\r\n          />\r\n          <img\r\n            [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"password-icon\" src=\"../../assets/icons/icon-password.svg\"\r\n          />\r\n        </div>\r\n        <div *ngIf=\"passwordValid == true; else passwordInvalid\"></div>\r\n        <div class=\"register-input password-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            (input)=\"validatePasswordConfirm()\"\r\n            [@warning]=\"passwordConfirmValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"passwordConfirm\"\r\n            placeholder=\"Confirm Password\"\r\n            type=\"password\"\r\n          />\r\n          <img\r\n            [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"password-icon\" src=\"../../assets/icons/icon-password.svg\"\r\n          />\r\n        </div>\r\n        <div *ngIf=\"passwordConfirmValid == true; else passwordConfirmInvalid\"></div>\r\n        <button type=\"submit\">Continuar</button>\r\n      </form>\r\n      <a class=\"link\" routerLink=\"/login\" routerLinkActive=\"active\">Já tem conta ? Logue-se</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"register-right-side\">\r\n    <div class=\"logo-container\">\r\n      <img class=\"logo\" src=\"assets/imgs/Logo-Compasso-Uol.svg\" />\r\n    </div>\r\n    <img class=\"back-image\" src=\"assets/imgs/Login-Image.png\" />\r\n  </div>\r\n</div>\r\n\r\n<ng-template #userInvalid>\r\n  <p class=\"errorMessage\">Email inválido</p>\r\n</ng-template>\r\n\r\n<ng-template #passwordInvalid>\r\n  <p class=\"errorPasswordMessage\">A Senha deve conter mais de 6 caracteres.</p>\r\n  <div class=\"charactersCheck\">\r\n    <p>Incluindo um caracter:</p>\r\n    <ul>\r\n      <li>\r\n        <div *ngIf=\"passwordValidator.upperCase == false; else checkIcon\">\r\n          <mat-icon class=\"icon-clear\">clear</mat-icon>\r\n        </div>\r\n        <p [@passwordConfirmationColor]=\"passwordValidator.upperCase ? 'enter' : 'leave'\">Maiúsculo</p>\r\n      </li>\r\n      <li>\r\n        <div *ngIf=\"passwordValidator.lowerCase == false; else checkIcon\">\r\n          <mat-icon class=\"icon-clear\">clear</mat-icon>\r\n        </div>\r\n        <p [@passwordConfirmationColor]=\"passwordValidator.lowerCase ? 'enter' : 'leave'\">Minúsculo</p>\r\n      </li>\r\n      <li>\r\n        <div *ngIf=\"passwordValidator.number == false; else checkIcon\">\r\n          <mat-icon class=\"icon-clear\">clear</mat-icon>\r\n        </div>\r\n        <p [@passwordConfirmationColor]=\"passwordValidator.number ? 'enter' : 'leave'\">Número</p>\r\n      </li>\r\n      <li>\r\n        <div *ngIf=\"passwordValidator.specialCharacter == false; else checkIcon\">\r\n          <mat-icon class=\"icon-clear\">clear</mat-icon>\r\n        </div>\r\n        <p [@passwordConfirmationColor]=\"passwordValidator.specialCharacter ? 'enter' : 'leave'\">Especial</p>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #passwordConfirmInvalid>\r\n  <p class=\"errorMessage\">As senhas não coincidem</p>\r\n</ng-template>\r\n\r\n<ng-template #checkIcon>\r\n  <mat-icon class=\"icon-check\">done</mat-icon>\r\n</ng-template>\r\n"
+        },
+        {
+            "name": "TitleComponent",
+            "id": "component-TitleComponent-0ffd54dddc02ed67a9295250501c16e46883dadb84c3e2e23e5b01b2e8710b5d4e915b2f94f52893c6a0b1b37bf6070e0f71f76aaa37b4a2bea55613177e4327",
+            "file": "src/stories/title.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-title",
+            "styleUrls": [
+                "./title.css"
+            ],
+            "styles": [],
+            "template": "<h1   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </h1>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Olá'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 32,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-title',\n  template: ` <h1\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </h1>`,\n  styleUrls: ['./title.css'],\n})\nexport default class TitleComponent {\n\n  @Input()\n  primary = false;\n\n  @Input()\n  backgroundColor?: string;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Olá';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-title--primary' : 'storybook-title--secondary';\n\n    return ['storybook-title', `storybook-title--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-title {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-radius: 50px;\n  background: #26292C;\n  box-sizing: border-box;\n  font-weight: 400;\n  border: solid 1px #FFF !important;\n  color: #E0E0E0;\n}\n.storybook-title--primary {\n  color: #E0E0E0;\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n\n.storybook-title--large {\n  width: 379px;\n  height: 60px;\n  padding: 20px;\n  padding-right: 46px;\n  font-size: 16px;\n  line-height: 20.28px;\n}\n",
+                    "styleUrl": "./title.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 34
+                    }
+                }
+            }
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-72cef7958c0313d22ac52e5d262c6165d973d04dacb847466586234209fff11440b84c8608eee69736db67286bf98c008810ec2f3dfc322d1ae5e5e7fc8d303d",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { AppRoutingModule } from './app.routing.module';\r\nimport { HomeModule } from './home/home.module';\r\nimport { LoginModule } from './login/login.module';\r\nimport { RegisterModule } from './register/register.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    LoginModule,\r\n    RegisterModule,\r\n    HomeModule,\r\n    AppRoutingModule,\r\n    CommonModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "HomeModule"
+                        },
+                        {
+                            "name": "LoginModule"
+                        },
+                        {
+                            "name": "RegisterModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-bcaa3f7be2304abe8554407862e528d622a0a749b102e24e4d20b4bedc3e886043c680b931fb9cc95c15aab872c6fa551b93800622dcdd48a9fe72ea0cb5fd30",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { LoginComponent } from './login/login.component';\r\nimport { NgModule } from \"@angular/core\";\r\nimport { RouterModule, Routes } from \"@angular/router\";\r\nimport { HomeComponent } from './home/home.component';\r\nimport { RegisterComponent } from './register/register.component';\r\n\r\n\r\nexport const routes: Routes = [\r\n  { path: '', redirectTo: '/login', pathMatch: 'full'},\r\n  { path: 'login', component: LoginComponent },\r\n  { path: 'register', component: RegisterComponent },\r\n  { path: 'home', component: HomeComponent }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\n\r\nexport class AppRoutingModule {}\r\n\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "HomeModule",
+            "id": "module-HomeModule-1018db2cc3f3a9853d74546de128158d26ac3de2e50cb7affd96ed534a56ccbb52f0d47455b586efcdc2d588bb958ff50e73cd467785e52afab3b1e090e15611",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/home/home.module.ts",
+            "methods": [],
+            "sourceCode": "import { AppRoutingModule } from './../app.routing.module';\nimport { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HomeComponent } from './home.component';\nimport { HttpClientModule } from '@angular/common/http';\n\n@NgModule({\n  declarations: [\n    HomeComponent\n  ],\n  imports: [\n    CommonModule,\n    AppRoutingModule,\n    HttpClientModule\n  ],\n  exports: [HomeComponent]\n})\nexport class HomeModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "HomeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "HomeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginModule",
+            "id": "module-LoginModule-8012cfdf607425ec47cc3077346db50b0c60b1f0a827554bb285b914106a046b8d5e6b88159aa1e8fcbd46b39bf619441662fad6c4b0212076aef9ba5b32a123",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/login/login.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { LoginComponent } from './login.component';\r\nimport { ReactiveFormsModule, FormsModule } from '@angular/forms'\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from '../app.routing.module';\r\nimport { MatIconModule } from '@angular/material/icon';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    LoginComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    ReactiveFormsModule,\r\n    FormsModule,\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MatIconModule\r\n  ],\r\n  exports: [\r\n    LoginComponent\r\n  ]\r\n})\r\nexport class LoginModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "RegisterModule",
+            "id": "module-RegisterModule-50c3351ffff16f14900e1a79297f931935c40f6c1a4b106dcbf0f640b8a17caa05875b0289f4ea45cc9c85b0fb03a647774b0d6d2bda751a8d4c3fa9b4e51704",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/register/register.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { RegisterComponent } from './register.component';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { AppRoutingModule } from '../app.routing.module';\nimport { MatIconModule } from '@angular/material/icon';\n\n@NgModule({\n  declarations: [\n    RegisterComponent\n  ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    AppRoutingModule,\n    MatIconModule\n  ],\n  exports: [\n    RegisterComponent\n  ]\n})\nexport class RegisterModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "RegisterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "RegisterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "StoriesModule",
+            "id": "module-StoriesModule-2f7f658ee11b885a776dd25b617335b4b8469e3bdffd82ef78ffd269d2edf273c3e2e3d3dc5b59c1525f08830f019bdf5f068cf49c11d06d6800163c7f93dfba",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/stories/stories.module.ts",
+            "methods": [],
+            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport ButtonComponent from \"./button.component\";\r\nimport InputComponent from \"./input.component\";\r\nimport TitleComponent from \"./title.component\";\r\n\r\n@NgModule({\r\n  declarations: [\r\n    ButtonComponent,\r\n    InputComponent,\r\n    TitleComponent\r\n  ],\r\n  imports: [\r\n    CommonModule\r\n  ]\r\n})\r\n\r\nexport class StoriesModule {}\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "InputComponent"
+                        },
+                        {
+                            "name": "TitleComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputComponent>",
+                "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TitleComponent>",
+                "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [
+            {
+                "name": "Day",
+                "childs": [
+                    {
+                        "name": "Domingo",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Segunda-feira",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Terça-feira",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Quarta-feira",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Quinta-feira",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Sexta-feira",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Sabádo",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/home/services/get-time-now.service.ts"
+            },
+            {
+                "name": "Month",
+                "childs": [
+                    {
+                        "name": "Janeiro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Fevereiro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Março",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Abril",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Maio",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Junho",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Julho",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Agosto",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Setembro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Outubro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Novembro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Dezembro",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/home/services/get-time-now.service.ts"
+            }
+        ],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Input.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<InputComponent>",
+                    "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Title.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TitleComponent>",
+                    "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {
+            "src/app/home/services/get-time-now.service.ts": [
+                {
+                    "name": "Day",
+                    "childs": [
+                        {
+                            "name": "Domingo",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Segunda-feira",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Terça-feira",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Quarta-feira",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Quinta-feira",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Sexta-feira",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Sabádo",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/home/services/get-time-now.service.ts"
+                },
+                {
+                    "name": "Month",
+                    "childs": [
+                        {
+                            "name": "Janeiro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Fevereiro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Março",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Abril",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Maio",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Junho",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Julho",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Agosto",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Setembro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Outubro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Novembro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Dezembro",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/home/services/get-time-now.service.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app.routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "redirectTo": "/login",
+                        "pathMatch": "full"
+                    },
+                    {
+                        "path": "login",
+                        "component": "LoginComponent"
+                    },
+                    {
+                        "path": "register",
+                        "component": "RegisterComponent"
+                    },
+                    {
+                        "path": "home",
+                        "component": "HomeComponent"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 5,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home/services/firebaseAccess.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "FirebaseAccess",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home/services/get-time-now.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "getTimeService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home/services/weather.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "WeatherService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/register/register.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RegisterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Title.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Title.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/User.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputComponent",
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/title.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TitleComponent",
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

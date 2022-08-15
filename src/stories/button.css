@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'mark-pro';
+  src: url(assets/fonts/Mark-Pro.ttf);
+}
+
+.storybook-button {
+  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: none !important;
+  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;
+  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;
+  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+  transition: ease-out 200ms;
+  line-height: 22.82px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 379px;
+  height: 67px;
+  color: #FFF;
+  font-size: 18px;
+  width: 379px;
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+/* .storybook-button--secondary {
+  color: #333;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+}
+.storybook-button--small {
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.storybook-button--medium {
+  font-size: 14px;
+  padding: 11px 20px;
+} */
+.storybook-button--large {
+  width: 379px;
+  height: 67px;
+  font-size: 18px;
+  width: 379px;
+  font-size: 16px;
+  padding: 12px 24px;
+}

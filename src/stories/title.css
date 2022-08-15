@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'mark-pro';
+  src: url(assets/fonts/Mark-Pro.ttf);
+}
+
+.storybook-title {
+  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #E0E0E0;
+  width: 118px;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 76.05px;
+}
+.storybook-title--primary {
+  color: #E0E0E0;
+}
+
+/*
+.storybook-button--small {
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.storybook-button--medium {
+  font-size: 14px;
+  padding: 11px 20px;
+} */
+
+.storybook-title--large {
+  width: 118px;
+}
