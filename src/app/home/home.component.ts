@@ -1,4 +1,4 @@
-import { FirebaseAccess } from './services/firebaseAccess.service';
+import { FirebaseAccess } from '../services/firebaseAccess.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   public temp: any;
 
   public timer = 60;
+
+  // COLOCAR DENTRO DE SERVICE ALGUMAS FUNÇÕES, TIPO REFRESHPAGE
 
   takeLocation() {
     const apiKey = 'ac12d8103b6346bf57264097f5692010';

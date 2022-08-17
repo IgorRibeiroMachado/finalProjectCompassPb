@@ -16,7 +16,6 @@ const Template: Story<InputComponent> = (args: InputComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
   label: 'Usuário',
 };
 

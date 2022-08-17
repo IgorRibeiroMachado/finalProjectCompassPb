@@ -18,7 +18,7 @@
         {
             "name": "FirebaseAccess",
             "id": "injectable-FirebaseAccess-4626ef73d5fccd30951675a462aaf8706bdb9cac89e43de00daa99348091bad45d0a327f46b5136dca92996687eeda538774e7f7d53f84e5a4c3245bae5782a1",
-            "file": "src/app/home/services/firebaseAccess.service.ts",
+            "file": "src/app/services/firebaseAccess.service.ts",
             "properties": [
                 {
                     "name": "app",
@@ -368,7 +368,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
+            "id": "component-ButtonComponent-748d5e97ce17163b2e6d42557458efdb1ff42509ed12e8d0713582bd2ddf03d26d587aa111abb7bfd871edd998c463a9361959fdaaf0d3a2234c4dfad779420c",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -380,60 +380,17 @@
                 "./button.css"
             ],
             "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n >\n   {{ label }}\n </button>",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nWhat background color to use\n",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 26,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
                     "name": "label",
-                    "defaultValue": "'Button'",
+                    "defaultValue": "'Continuar'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "pos": 711,
-                            "end": 724,
-                            "flags": 4227072,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "kind": 325,
-                            "tagName": {
-                                "pos": 712,
-                                "end": 720,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 79,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 40,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
                     "line": 20,
-                    "type": "boolean",
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -441,9 +398,7 @@
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nHow large should the button be?\n",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 32,
+                    "line": 17,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 }
@@ -454,9 +409,7 @@
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 46,
+                    "line": 23,
                     "type": "EventEmitter"
                 }
             ],
@@ -469,11 +422,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Continuar';\n\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    return ['storybook-button', `storybook-button--${this.size}`];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-button {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border: none !important;\n  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\n  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\n  transition: ease-out 200ms;\n  line-height: 22.82px;\n  border-radius: 50px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.storybook-button--primary {\n  color: #FFF;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n.storybook-button--large {\n  width: 379px;\n  height: 67px;\n  color: #FFF;\n  font-size: 18px;\n  width: 379px;\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-button {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border: none !important;\n  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\n  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\n  transition: ease-out 200ms;\n  line-height: 22.82px;\n  border-radius: 50px;\n  font-weight: 700;\n  cursor: pointer;\n  color: #FFF;\n  font-size: 18px;\n  width: 379px;\n  font-size: 16px;\n  padding: 12px 24px;\n  width: 100%;\n  /* width: 379px;\n  height: 67px; */\n}\n",
                     "styleUrl": "./button.css"
                 }
             ],
@@ -485,14 +438,14 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 48
+                        "line": 25
                     }
                 }
             }
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-8b7cc9d9cf8701d8cf09202220c73a03581f2b44f5b3e960f9c779d9b0e04274b46f41ed3cc0c058a11f5563460cc4d2dc273d406fe70a9d0e9b9efe855e2efe",
+            "id": "component-HomeComponent-9229d587deb4ec1eeb29b3233b3179a84224d350c44b7b685f62b40791673be3c1da9ec304dc5367a00a688a4390319674b0af0acb1a28f372c24dc99282028f",
             "file": "src/app/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -579,7 +532,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 49,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -589,7 +542,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -599,7 +552,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -609,7 +562,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 24,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -619,7 +572,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -631,7 +584,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { FirebaseAccess } from './services/firebaseAccess.service';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { HttpClient} from '@angular/common/http';\r\nimport { Router } from '@angular/router';\r\nimport { getTimeService } from './services/get-time-now.service';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit {\r\n\r\n  dateTimeNow = this.getTime.getTimeNow();\r\n\r\n  public city = 'Loading';\r\n  public state: any;\r\n  public temp: any;\r\n\r\n  public timer = 60;\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`).subscribe((valor) => {\r\n        this.city = valor.data['0'].county;\r\n        this.state = valor.data['0'].region_code;\r\n        console.log(valor);\r\n        this.takeWeather();\r\n      });\r\n    })\r\n  }\r\n\r\n  takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          this.temp = Math.trunc(valor.current.temp);\r\n          console.log(valor);\r\n        })\r\n    })\r\n  }\r\n\r\n  logout() {\r\n    this.router.navigate(['/login']);\r\n    this.firebaseAccess.signOutUser();\r\n  }\r\n\r\n  refreshPage() {\r\n    setInterval(() => {\r\n      this.timer--;\r\n      if (this.timer == 0) {\r\n        this.router.navigate(['/login']);\r\n        this.firebaseAccess.signOutUser();\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    private router: Router,\r\n    private getTime: getTimeService,\r\n    private firebaseAccess: FirebaseAccess,\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.takeLocation();\r\n    /* this.takeWeather(); */\r\n    this.refreshPage();\r\n  }\r\n\r\n}\r\n\r\n\r\n",
+            "sourceCode": "import { FirebaseAccess } from '../services/firebaseAccess.service';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { HttpClient} from '@angular/common/http';\r\nimport { Router } from '@angular/router';\r\nimport { getTimeService } from './services/get-time-now.service';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit {\r\n\r\n  dateTimeNow = this.getTime.getTimeNow();\r\n\r\n  public city = 'Loading';\r\n  public state: any;\r\n  public temp: any;\r\n\r\n  public timer = 60;\r\n\r\n  // COLOCAR DENTRO DE SERVICE ALGUMAS FUNÇÕES, TIPO REFRESHPAGE\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`).subscribe((valor) => {\r\n        this.city = valor.data['0'].county;\r\n        this.state = valor.data['0'].region_code;\r\n        console.log(valor);\r\n        this.takeWeather();\r\n      });\r\n    })\r\n  }\r\n\r\n  takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          this.temp = Math.trunc(valor.current.temp);\r\n          console.log(valor);\r\n        })\r\n    })\r\n  }\r\n\r\n  logout() {\r\n    this.router.navigate(['/login']);\r\n    this.firebaseAccess.signOutUser();\r\n  }\r\n\r\n  refreshPage() {\r\n    setInterval(() => {\r\n      this.timer--;\r\n      if (this.timer == 0) {\r\n        this.router.navigate(['/login']);\r\n        this.firebaseAccess.signOutUser();\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    private router: Router,\r\n    private getTime: getTimeService,\r\n    private firebaseAccess: FirebaseAccess,\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.takeLocation();\r\n    /* this.takeWeather(); */\r\n    this.refreshPage();\r\n  }\r\n\r\n}\r\n\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -671,7 +624,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 62,
+                "line": 64,
                 "jsdoctags": [
                     {
                         "name": "http",
@@ -718,7 +671,7 @@
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-63ae3675a44a3cbeed8ec590d1696071848328a8d7877f62a8dae1a0a1c7ca77a39380be4275578311df45a915f048beff03a74be1e0b778091c93597bd64bcd",
+            "id": "component-InputComponent-ec87c4f4053fe1a138522b6d946a2f96d6e8b097fae4834d31f7565c17b966d9f666f71600b439c569fccd340183ac320cb67fbab1474959d369bc73c4d070d0",
             "file": "src/stories/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -730,34 +683,17 @@
                 "./input.css"
             ],
             "styles": [],
-            "template": "<input   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n   [placeholder]=\"label\"\n >",
+            "template": "<input   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [placeholder]=\"label\"\n >",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
-                {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 19,
-                    "type": "string",
-                    "decorators": []
-                },
                 {
                     "name": "label",
                     "defaultValue": "'Usuário'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 18,
                     "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 16,
-                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -765,7 +701,7 @@
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 15,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 }
@@ -776,9 +712,7 @@
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 31,
+                    "line": 21,
                     "type": "EventEmitter"
                 }
             ],
@@ -791,11 +725,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-input',\n  template: ` <input\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n    [placeholder]=\"label\"\n  >`,\n  styleUrls: ['./input.css'],\n})\nexport default class InputComponent {\n  \n  @Input()\n  primary = false;\n\n  @Input()\n  backgroundColor?: string;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Usuário';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-input--primary' : 'storybook-input--secondary';\n\n    return ['storybook-input', `storybook-input--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-input',\n  template: ` <input\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [placeholder]=\"label\"\n  >`,\n  styleUrls: ['./input.css'],\n})\nexport default class InputComponent {\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Usuário';\n\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    return ['storybook-input', `storybook-input--${this.size}`];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-input {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-radius: 50px;\n  background: #26292C;\n  box-sizing: border-box;\n  font-weight: 400;\n  border: solid 1px #FFF !important;\n  color: #E0E0E0;\n}\n.storybook-input--primary {\n  color: #E0E0E0;\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n\n.storybook-input--large {\n  width: 379px;\n  height: 60px;\n  padding: 20px;\n  padding-right: 46px;\n  font-size: 16px;\n  line-height: 20.28px;\n}\n",
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-input {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-radius: 50px;\n  background: #26292C;\n  box-sizing: border-box;\n  font-weight: 400;\n  border: solid 1px #FFF !important;\n  color: #E0E0E0;\n\n  width: 80%;\n  max-width: 379px;\n  height: 60px;\n  padding: 20px;\n  padding-right: 46px;\n  font-size: 16px;\n  line-height: 20.28px;\n}\n\n",
                     "styleUrl": "./input.css"
                 }
             ],
@@ -807,14 +741,14 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 33
+                        "line": 23
                     }
                 }
             }
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-59a32aa135ee4c00448033c9ab25e3fbe89f3f8fecfc8342338beb93f20c5e6944bddfeffb2ad92ca8fe978343513cfde0199afed36491df1468eab8b3516cd0",
+            "id": "component-LoginComponent-8ea15ade6a6fd060dadd4f793007c45c8e60b8fdc548a5f64fb89638f5526bf02a54e128dee87afbea28cf859ddc66b935f2c70f0e2ce8a509607341abe8180b",
             "file": "src/app/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -913,7 +847,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';\r\nimport { Router } from '@angular/router';\r\nimport { FirebaseAccess } from '../home/services/firebaseAccess.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('moveIcon', [\r\n      state('moveIn', style({\r\n        right: 140,\r\n      })),\r\n      state('moveOut', style({\r\n        right: 85\r\n      })),\r\n      transition('moveOut <=> moveIn', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n  ]\r\n})\r\n\r\nexport class LoginComponent implements OnInit {\r\n  loginForm = new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })\r\n\r\n  loginValid = true;\r\n\r\n  isMove = false;\r\n\r\n  passwordValidator = {\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }\r\n\r\n  moveIcons() {\r\n    if (this.loginForm.controls['user'].value\r\n     || this.loginForm.controls['password'].value) {\r\n      this.isMove = true;\r\n    } else {\r\n      this.isMove = false;\r\n    }\r\n  }\r\n\r\n  login() {\r\n    this.firebaseAccess.signInUser(this.loginForm.controls['user']\r\n      .value, this.loginForm.controls['password'].value)\r\n    .then((userCredential) => {\r\n      this.loginValid = true;\r\n      this.router.navigate(['/home']);\r\n    })\r\n    .catch((error) => {\r\n      this.loginValid = false;\r\n      console.log(`Codígo de erro: ${error.code}!\r\n      Mensagem: ${error.message}`);\r\n    })\r\n  }\r\n\r\n  constructor(\r\n    private formBuilder: FormBuilder,\r\n    private router: Router,\r\n    private firebaseAccess: FirebaseAccess\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n}\r\n",
+            "sourceCode": "import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';\r\nimport { Router } from '@angular/router';\r\nimport { FirebaseAccess } from '../services/firebaseAccess.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('moveIcon', [\r\n      state('moveIn', style({\r\n        right: 140,\r\n      })),\r\n      state('moveOut', style({\r\n        right: 85\r\n      })),\r\n      transition('moveOut <=> moveIn', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n  ]\r\n})\r\n\r\nexport class LoginComponent implements OnInit {\r\n  loginForm = new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })\r\n\r\n  loginValid = true;\r\n\r\n  isMove = false;\r\n\r\n  passwordValidator = {\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }\r\n\r\n  moveIcons() {\r\n    if (this.loginForm.controls['user'].value\r\n     || this.loginForm.controls['password'].value) {\r\n      this.isMove = true;\r\n    } else {\r\n      this.isMove = false;\r\n    }\r\n  }\r\n\r\n  login() {\r\n    this.firebaseAccess.signInUser(this.loginForm.controls['user']\r\n      .value, this.loginForm.controls['password'].value)\r\n    .then((userCredential) => {\r\n      this.loginValid = true;\r\n      this.router.navigate(['/home']);\r\n    })\r\n    .catch((error) => {\r\n      this.loginValid = false;\r\n      console.log(`Codígo de erro: ${error.code}!\r\n      Mensagem: ${error.message}`);\r\n    })\r\n  }\r\n\r\n  constructor(\r\n    private formBuilder: FormBuilder,\r\n    private router: Router,\r\n    private firebaseAccess: FirebaseAccess\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -985,7 +919,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-9af4b94694b3dd38e104aa0fee6fd0db9152c69002fb6dd2f5b41b98e78284081295cdf3a674375f6874d4fe0a668ebf7dd0e0046c147bab019344addd7b1291",
+            "id": "component-RegisterComponent-08bca3099acc72c10ac1ef3513147510065e800ab22702dd375965f76dac61e2115d85db49858893774b8d6d53330d168e2b2ae36b5d470d085633acb3c82abf",
             "file": "src/app/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1134,7 +1068,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { animate, state, style, transition, trigger } from '@angular/animations';\nimport { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\nimport { FirebaseAccess } from '../home/services/firebaseAccess.service';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('moveIcon', [\n      state('moveIn', style({\n        right: 140,\n      })),\n      state('moveOut', style({\n        right: 85\n      })),\n      transition('moveOut <=> moveIn', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('passwordConfirmationColor', [\n      state('enter', style({color: 'green'})),\n      state('leave', style({color: '#e9b425'})),\n\n      transition('leave <=> enter', [\n        animate('0.2s')\n      ])\n    ])\n  ]\n})\n\nexport class RegisterComponent implements OnInit {\n\n  registerForm = new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })\n\n  passwordValidator = {\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }\n\n  isMove = false;\n  userValid = true;\n  passwordValid = true;\n  passwordConfirmValid = true;\n\n  moveIcons() {\n    if (\n      this.registerForm.controls['user'].value ||\n      this.registerForm.controls['password'].value ||\n      this.registerForm.controls['passwordConfirm'].value\n    ) {\n      this.isMove = true;\n    } else {\n      this.isMove = false;\n    }\n  }\n\n  validateUser() {\n    if (this.registerForm.controls['user'].errors) {\n      this.userValid = false;\n    } else {\n      this.userValid = true;\n    }\n  }\n\n  validatePasswordConfirm() {\n    if (this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value\n      || this.registerForm.controls['passwordConfirm'].value == '') {\n      this.passwordConfirmValid = false;\n    } else {\n      this.passwordConfirmValid = true;\n    }\n  }\n\n  validatePassword() {\n    const password = this.registerForm.controls['password'].value;\n    let checkFlag = 0;\n    if (password) {\n      // Minúscula\n      if (/[a-z]/.test(password)) {\n        this.passwordValidator.lowerCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.lowerCase = false;\n        checkFlag--;\n      }\n      // Maiuscula\n      if (/[A-Z]/.test(password)) {\n        this.passwordValidator.upperCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.upperCase = false;\n        checkFlag--;\n      }\n      // Number\n      if (/[0-9]/.test(password)) {\n        this.passwordValidator.number = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.number = false;\n        checkFlag--;\n      }\n      // Caracter Especial\n      if (/[`!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]/.test(password)) {\n        this.passwordValidator.specialCharacter = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.specialCharacter = false;\n        checkFlag--;\n      }\n    }\n    if (checkFlag == 4) {\n      if (!this.registerForm.controls['password'].errors) {\n        this.passwordValid = true;\n        return;\n      }\n    }\n    this.passwordValid = false;\n  }\n\n  register() {\n    if (this.passwordValid == true && this.userValid == true && this.passwordConfirmValid == true) {\n      this.firebaseAccess.createNewUser(\n        this.registerForm.controls['user'].value, this.registerForm.controls['password'].value\n      )\n    }\n    console.log(this.firebaseAccess.auth);\n  }\n\n  constructor(private firebaseAccess: FirebaseAccess) { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { FirebaseAccess } from './../services/firebaseAccess.service';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\nimport { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('moveIcon', [\n      state('moveIn', style({\n        right: 140,\n      })),\n      state('moveOut', style({\n        right: 85\n      })),\n      transition('moveOut <=> moveIn', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('passwordConfirmationColor', [\n      state('enter', style({color: 'green'})),\n      state('leave', style({color: '#e9b425'})),\n\n      transition('leave <=> enter', [\n        animate('0.2s')\n      ])\n    ])\n  ]\n})\n\nexport class RegisterComponent implements OnInit {\n\n  registerForm = new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })\n\n  passwordValidator = {\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }\n\n  isMove = false;\n  userValid = true;\n  passwordValid = true;\n  passwordConfirmValid = true;\n\n  moveIcons() {\n    if (\n      this.registerForm.controls['user'].value ||\n      this.registerForm.controls['password'].value ||\n      this.registerForm.controls['passwordConfirm'].value\n    ) {\n      this.isMove = true;\n    } else {\n      this.isMove = false;\n    }\n  }\n\n  validateUser() {\n    if (this.registerForm.controls['user'].errors) {\n      this.userValid = false;\n    } else {\n      this.userValid = true;\n    }\n  }\n\n  validatePasswordConfirm() {\n    if (this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value\n      || this.registerForm.controls['passwordConfirm'].value == '') {\n      this.passwordConfirmValid = false;\n    } else {\n      this.passwordConfirmValid = true;\n    }\n  }\n\n  validatePassword() {\n    const password = this.registerForm.controls['password'].value;\n    let checkFlag = 0;\n    if (password) {\n      // Minúscula\n      if (/[a-z]/.test(password)) {\n        this.passwordValidator.lowerCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.lowerCase = false;\n        checkFlag--;\n      }\n      // Maiuscula\n      if (/[A-Z]/.test(password)) {\n        this.passwordValidator.upperCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.upperCase = false;\n        checkFlag--;\n      }\n      // Number\n      if (/[0-9]/.test(password)) {\n        this.passwordValidator.number = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.number = false;\n        checkFlag--;\n      }\n      // Caracter Especial\n      if (/[`!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]/.test(password)) {\n        this.passwordValidator.specialCharacter = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.specialCharacter = false;\n        checkFlag--;\n      }\n    }\n    if (checkFlag == 4) {\n      if (!this.registerForm.controls['password'].errors) {\n        this.passwordValid = true;\n        return;\n      }\n    }\n    this.passwordValid = false;\n  }\n\n  register() {\n    if (this.passwordValid == true && this.userValid == true && this.passwordConfirmValid == true) {\n      this.firebaseAccess.createNewUser(\n        this.registerForm.controls['user'].value, this.registerForm.controls['password'].value\n      )\n    }\n    console.log(this.firebaseAccess.auth);\n  }\n\n  constructor(private firebaseAccess: FirebaseAccess) { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1176,7 +1110,7 @@
         },
         {
             "name": "TitleComponent",
-            "id": "component-TitleComponent-0ffd54dddc02ed67a9295250501c16e46883dadb84c3e2e23e5b01b2e8710b5d4e915b2f94f52893c6a0b1b37bf6070e0f71f76aaa37b4a2bea55613177e4327",
+            "id": "component-TitleComponent-77c4668f895dc6bdbada40919e7a4a6e79c6dc47137edf3e4499f65084b929246647f0cc9b13c8f8cd6425c82f3fe3020dbcf42e257675ac486e900e5968fb73",
             "file": "src/stories/title.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1188,34 +1122,17 @@
                 "./title.css"
             ],
             "styles": [],
-            "template": "<h1   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </h1>",
+            "template": "<h1   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n >\n   {{ label }}\n </h1>",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
-                {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "string",
-                    "decorators": []
-                },
                 {
                     "name": "label",
                     "defaultValue": "'Olá'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 19,
                     "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 17,
-                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1223,7 +1140,7 @@
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 16,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 }
@@ -1234,9 +1151,7 @@
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 32,
+                    "line": 22,
                     "type": "EventEmitter"
                 }
             ],
@@ -1249,11 +1164,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-title',\n  template: ` <h1\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </h1>`,\n  styleUrls: ['./title.css'],\n})\nexport default class TitleComponent {\n\n  @Input()\n  primary = false;\n\n  @Input()\n  backgroundColor?: string;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Olá';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-title--primary' : 'storybook-title--secondary';\n\n    return ['storybook-title', `storybook-title--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-title',\n  template: ` <h1\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n  >\n    {{ label }}\n  </h1>`,\n  styleUrls: ['./title.css'],\n})\nexport default class TitleComponent {\n\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  @Input()\n  label = 'Olá';\n\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    return ['storybook-title', `storybook-title--${this.size}`];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-title {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-radius: 50px;\n  background: #26292C;\n  box-sizing: border-box;\n  font-weight: 400;\n  border: solid 1px #FFF !important;\n  color: #E0E0E0;\n}\n.storybook-title--primary {\n  color: #E0E0E0;\n}\n\n/* .storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n} */\n\n.storybook-title--large {\n  width: 379px;\n  height: 60px;\n  padding: 20px;\n  padding-right: 46px;\n  font-size: 16px;\n  line-height: 20.28px;\n}\n",
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-title {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  color: #E0E0E0;\n  width: 118px;\n  font-weight: 400;\n  font-size: 60px;\n  line-height: 76.05px;\n  max-width: 118px;\n}\n.storybook-title--primary {\n  color: #E0E0E0;\n}\n",
                     "styleUrl": "./title.css"
                 }
             ],
@@ -1265,7 +1180,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 34
+                        "line": 24
                     }
                 }
             }
@@ -2049,7 +1964,7 @@
         ]
     },
     "coverage": {
-        "count": 5,
+        "count": 0,
         "status": "low",
         "files": [
             {
@@ -2068,15 +1983,6 @@
                 "name": "HomeComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/12",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/home/services/firebaseAccess.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "FirebaseAccess",
-                "coveragePercent": 0,
-                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -2113,6 +2019,15 @@
                 "name": "RegisterComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/firebaseAccess.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "FirebaseAccess",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -2209,17 +2124,17 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
             },
             {
                 "filePath": "src/stories/input.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "InputComponent",
-                "coveragePercent": 16,
-                "coverageCount": "1/6",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -2227,8 +2142,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "TitleComponent",
-                "coveragePercent": 16,
-                "coverageCount": "1/6",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {

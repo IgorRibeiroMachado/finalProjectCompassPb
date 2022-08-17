@@ -12,28 +12,12 @@
   border: solid 1px #FFF !important;
   color: #E0E0E0;
 
-  width: 379px;
+  width: 80%;
+  max-width: 379px;
   height: 60px;
   padding: 20px;
   padding-right: 46px;
   font-size: 16px;
   line-height: 20.28px;
 }
-/*
-.storybook-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
-}
-.storybook-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
-}  */
 
-.storybook-input--large {
-  width: 379px;
-  height: 60px;
-  padding: 20px;
-  padding-right: 46px;
-  font-size: 16px;
-  line-height: 20.28px;
-}

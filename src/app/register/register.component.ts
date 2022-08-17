@@ -1,7 +1,7 @@
+import { FirebaseAccess } from './../services/firebaseAccess.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirebaseAccess } from '../home/services/firebaseAccess.service';
 
 @Component({
   selector: 'app-register',
@@ -82,12 +82,9 @@ export class RegisterComponent implements OnInit {
   }
 
   validatePasswordConfirm() {
-    if (this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value
-      || this.registerForm.controls['passwordConfirm'].value == '') {
-      this.passwordConfirmValid = false;
-    } else {
-      this.passwordConfirmValid = true;
-    }
+    this.passwordConfirmValid =
+      !(this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value
+      || this.registerForm.controls['passwordConfirm'].value == '')
   }
 
   validatePassword() {
@@ -137,12 +134,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (this.passwordValid == true && this.userValid == true && this.passwordConfirmValid == true) {
+    if (this.passwordValid && this.userValid && this.passwordConfirmValid) {
       this.firebaseAccess.createNewUser(
         this.registerForm.controls['user'].value, this.registerForm.controls['password'].value
       )
     }
-    console.log(this.firebaseAccess.auth);
   }
 
   constructor(private firebaseAccess: FirebaseAccess) { }

@@ -2,7 +2,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { FirebaseAccess } from '../home/services/firebaseAccess.service';
+import { FirebaseAccess } from '../services/firebaseAccess.service';
 
 @Component({
   selector: 'app-login',
@@ -43,13 +43,6 @@ export class LoginComponent implements OnInit {
   loginValid = true;
 
   isMove = false;
-
-  passwordValidator = {
-    lowerCase: false,
-    upperCase: false,
-    number: false,
-    specialCharacter: false
-  }
 
   moveIcons() {
     if (this.loginForm.controls['user'].value
