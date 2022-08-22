@@ -5,11 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class getTimeService {
 
-  private now = new Date();
-
-  public getTimeNow() {
-    let hora = `${this.now.getHours()}`;
-    let min = `${this.now.getMinutes()}`;
+  public getTimeNow(now: Date) {
+    let hora = `${now.getHours()}`;
+    let min = `${now.getMinutes()}`;
 
     if (hora.length == 1) {
       hora = `0${hora}`;
@@ -19,10 +17,10 @@ export class getTimeService {
     }
 
     const dateTimeNow = {
-      diaNumber: this.now.getDate(),
-      ano: this.now.getFullYear(),
-      mes: Month[this.now.getMonth()],
-      diaWord: Day[this.now.getDay()],
+      diaNumber: now.getDate(),
+      ano: now.getFullYear(),
+      mes: Month[now.getMonth()],
+      diaWord: Day[now.getDay()],
       hora,
       min,
     }

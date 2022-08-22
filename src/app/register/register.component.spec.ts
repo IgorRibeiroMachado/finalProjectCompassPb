@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
+import { AppModule } from '../app.module';
 
 fdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -29,7 +29,8 @@ fdescribe('RegisterComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AppModule
       ]
     })
     .compileComponents();
@@ -148,46 +149,20 @@ fdescribe('RegisterComponent', () => {
   });
 
   it('should validate register function when form is valid', () => {
-    const form = component
-      .registerForm.setValue({
-        "user": "arvore@folhaa.com",
-        "password": "Arvore123@",
-        "passwordConfirm": "Arvore123@"
-    });
 
-    let spy1 = spyOn(component, "register")
-      .and.returnValue();
+    const firebaseAccessStub: FirebaseAccess = fixture.debugElement.injector.get(FirebaseAccess);
 
-    let spy2 = spyOn(authStub, "createNewUser");
+    spyOn(component, 'register').and.callThrough();
+    spyOn(firebaseAccessStub, 'createNewUser').and.stub();
 
-    fixture.detectChanges();
-
-    let teste = component.register();
-
-    expect(component.passwordValid).toBeTruthy();
-    expect(component.userValid).toBeTruthy();
-    expect(component.passwordConfirmValid).toBeTruthy();
-    expect(component.register).toHaveBeenCalled();
-  });
-
-  it('should validate register function when form is invalid', () => {
-    const form = component
-    .registerForm.setValue({
-      "user": "arvore@folhaa.com",
-      "password": "Arvore123@",
-      "passwordConfirm": "Arvore321@"
-    });
     component.passwordValid = true;
     component.userValid = true;
     component.passwordConfirmValid = true;
-    fixture.detectChanges();
-
-    spyOn(component, "register").and.callFake;
-    spyOn(authStub, "createNewUser");
 
     fixture.detectChanges();
 
     component.register();
+
     expect(component.register).toHaveBeenCalled();
   });
 });

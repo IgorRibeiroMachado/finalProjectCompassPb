@@ -6,7 +6,10 @@
       <form
         class="login-form"
         [formGroup]="loginForm"
-        (ngSubmit)="login()"
+        (ngSubmit)="login(
+          loginForm.controls['user'].value,
+          loginForm.controls['password'].value
+          )"
         >
         <h2>Login</h2>
         <div class="login-input user-input">

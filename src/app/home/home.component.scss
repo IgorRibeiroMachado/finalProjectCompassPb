@@ -204,6 +204,7 @@
 
 @media screen and (min-width: 1000px) and (max-width: 1400px) {
   #homeComponent {
+    max-height: 100vh;
     header {
       margin-bottom: 19px;
       #dateTime {

@@ -17,46 +17,19 @@
     "injectables": [
         {
             "name": "FirebaseAccess",
-            "id": "injectable-FirebaseAccess-4626ef73d5fccd30951675a462aaf8706bdb9cac89e43de00daa99348091bad45d0a327f46b5136dca92996687eeda538774e7f7d53f84e5a4c3245bae5782a1",
+            "id": "injectable-FirebaseAccess-8f1bc6913e9983d4abc45cfa3298b721075f602a3df148fea55bbcce187e1cd043e16e2b85aeb9c135d3f5f1e069a0a27dc7397da9096cff74bfdef3020f7b0f",
             "file": "src/app/services/firebaseAccess.service.ts",
             "properties": [
                 {
-                    "name": "app",
-                    "defaultValue": "initializeApp(this.firebaseConfig)",
+                    "name": "fireAuth",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
+                    "type": "AngularFireAuth",
                     "optional": false,
                     "description": "",
-                    "line": 21,
-                    "modifierKind": [
-                        121
-                    ]
-                },
-                {
-                    "name": "auth",
-                    "defaultValue": "getAuth()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 23,
+                    "line": 10,
                     "modifierKind": [
                         123
-                    ]
-                },
-                {
-                    "name": "firebaseConfig",
-                    "defaultValue": "{\r\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\r\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\r\n    projectId: \"finalprojectangular-bd4f1\",\r\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\r\n    messagingSenderId: \"114691533755\",\r\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\r\n    measurementId: \"G-QFH041HDEW\"\r\n  }",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "optional": false,
-                    "description": "",
-                    "line": 11,
-                    "modifierKind": [
-                        121
                     ]
                 }
             ],
@@ -80,7 +53,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 12,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -126,7 +99,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -159,7 +132,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -171,7 +144,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { initializeApp } from 'firebase/app';\r\nimport { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from 'firebase/auth';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class FirebaseAccess {\r\n\r\n  private firebaseConfig = {\r\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\r\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\r\n    projectId: \"finalprojectangular-bd4f1\",\r\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\r\n    messagingSenderId: \"114691533755\",\r\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\r\n    measurementId: \"G-QFH041HDEW\"\r\n  };\r\n\r\n  private app = initializeApp(this.firebaseConfig);\r\n\r\n  public auth = getAuth();\r\n\r\n  public createNewUser(email: any, password: any) {\r\n    createUserWithEmailAndPassword(this.auth, email, password)\r\n      .then((userCredential) => {\r\n        this.router.navigate(['/home']);\r\n      })\r\n      .catch((error) => {\r\n        console.log(`Codígo de erro: ${error.code}! Mensagem: ${error.message}`);\r\n      })\r\n  }\r\n\r\n  public signInUser(email: any, password: any) {\r\n    return signInWithEmailAndPassword(this.auth, email, password);\r\n  }\r\n\r\n  public signOutUser() {\r\n    signOut(this.auth).then(() => {\r\n      console.log('Deslogado com sucesso!');\r\n    })\r\n    .catch((error) => {\r\n      console.log('Não deu pra deslogar :(');\r\n    })\r\n  }\r\n  constructor(private router: Router) { }\r\n}\r\n\r\n",
+            "sourceCode": "import { AngularFireAuth } from '@angular/fire/compat/auth';\r\nimport { Injectable } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class FirebaseAccess {\r\n\r\n  constructor(private router: Router, public fireAuth: AngularFireAuth) { }\r\n\r\n  public createNewUser(email: any, password: any) {\r\n    this.fireAuth['createUserWithEmailAndPassword'](email, password)\r\n      .then((success: any) => {\r\n        this.router.navigate(['/home']);\r\n      })\r\n      .catch((error: any) => {\r\n        console.log(`Codígo de erro: ${error.code}! Mensagem: ${error.message}`);\r\n      })\r\n  }\r\n\r\n  public signInUser(email: any, password: any): any {\r\n    this.fireAuth['signInWithEmailAndPassword'](email, password)\r\n      .then((success: any) => {\r\n        this.router.navigate(['/home']);\r\n      })\r\n      .catch((error: any) => {\r\n        console.log(error);\r\n      })\r\n  }\r\n\r\n  public signOutUser() {\r\n    this.fireAuth['signOut']().then((success: any) => {\r\n      console.log('Deslogado com sucesso!');\r\n    })\r\n    .catch((error: any) => {\r\n      console.log('Não deu pra deslogar :(');\r\n    })\r\n  }\r\n}\r\n\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -183,13 +156,28 @@
                         "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 46,
+                "line": 8,
                 "jsdoctags": [
                     {
                         "name": "router",
                         "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -202,35 +190,39 @@
         },
         {
             "name": "getTimeService",
-            "id": "injectable-getTimeService-b8795accdbeb36f3d3225f13e4fc47fc1894f9f11088e6f52eb808d3bb93b6b92bd2fdd0d80102b7ba7244909a090c6bcf1a5316e52e7d609e5aa03c9bcf8aed",
+            "id": "injectable-getTimeService-a6d844911874c5727f33f88899e504c69d49cf20c2b4c7a183982e1c699731a4b2316170dea2ed0bcd27fc544563303b13699744fe41c7694f4377daf3ddef3a",
             "file": "src/app/home/services/get-time-now.service.ts",
-            "properties": [
-                {
-                    "name": "now",
-                    "defaultValue": "new Date()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 8,
-                    "modifierKind": [
-                        121
-                    ]
-                }
-            ],
+            "properties": [],
             "methods": [
                 {
                     "name": "getTimeNow",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "now",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "{ diaNumber: any; ano: any; mes: string; diaWord: string; hora: string; min: string; }",
                     "typeParameters": [],
-                    "line": 10,
+                    "line": 8,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
                         123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "now",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
                     ]
                 }
             ],
@@ -238,49 +230,115 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class getTimeService {\r\n\r\n  private now = new Date();\r\n\r\n  public getTimeNow() {\r\n    let hora = `${this.now.getHours()}`;\r\n    let min = `${this.now.getMinutes()}`;\r\n\r\n    if (hora.length == 1) {\r\n      hora = `0${hora}`;\r\n    }\r\n    if (min.length == 1) {\r\n      min = `0${min}`;\r\n    }\r\n\r\n    const dateTimeNow = {\r\n      diaNumber: this.now.getDate(),\r\n      ano: this.now.getFullYear(),\r\n      mes: Month[this.now.getMonth()],\r\n      diaWord: Day[this.now.getDay()],\r\n      hora,\r\n      min,\r\n    }\r\n\r\n    return dateTimeNow;\r\n  }\r\n\r\n  constructor() { }\r\n}\r\n\r\nexport enum Day {\r\n  'Domingo',\r\n  'Segunda-feira',\r\n  'Terça-feira',\r\n  'Quarta-feira',\r\n  'Quinta-feira',\r\n  'Sexta-feira',\r\n  'Sabádo'\r\n}\r\n\r\nexport enum Month {\r\n  Janeiro,\r\n  Fevereiro,\r\n  Março,\r\n  Abril,\r\n  Maio,\r\n  Junho,\r\n  Julho,\r\n  Agosto,\r\n  Setembro,\r\n  Outubro,\r\n  Novembro,\r\n  Dezembro\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class getTimeService {\r\n\r\n  public getTimeNow(now: Date) {\r\n    let hora = `${now.getHours()}`;\r\n    let min = `${now.getMinutes()}`;\r\n\r\n    if (hora.length == 1) {\r\n      hora = `0${hora}`;\r\n    }\r\n    if (min.length == 1) {\r\n      min = `0${min}`;\r\n    }\r\n\r\n    const dateTimeNow = {\r\n      diaNumber: now.getDate(),\r\n      ano: now.getFullYear(),\r\n      mes: Month[now.getMonth()],\r\n      diaWord: Day[now.getDay()],\r\n      hora,\r\n      min,\r\n    }\r\n\r\n    return dateTimeNow;\r\n  }\r\n\r\n  constructor() { }\r\n}\r\n\r\nexport enum Day {\r\n  'Domingo',\r\n  'Segunda-feira',\r\n  'Terça-feira',\r\n  'Quarta-feira',\r\n  'Quinta-feira',\r\n  'Sexta-feira',\r\n  'Sabádo'\r\n}\r\n\r\nexport enum Month {\r\n  Janeiro,\r\n  Fevereiro,\r\n  Março,\r\n  Abril,\r\n  Maio,\r\n  Junho,\r\n  Julho,\r\n  Agosto,\r\n  Setembro,\r\n  Outubro,\r\n  Novembro,\r\n  Dezembro\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 31
+                "line": 29
             },
             "type": "injectable"
         },
         {
             "name": "WeatherService",
-            "id": "injectable-WeatherService-580e2a137858434dede63ddd4f27f3ecfdfe66c71e72388e22d02e7c5acfdab3a150f90c0273c010b8c85a9984e93c0cb1abcaa3b2f969e029a9bd180cb6e363",
+            "id": "injectable-WeatherService-939a2869727ca5051aee5ee58994773db5a6542adafa85b3af7aecb76b919e6a10bd645196a4220e948715d8e4ddca905a5dbf4c6b57224e060ea4d3dfa83450",
             "file": "src/app/home/services/weather.service.ts",
             "properties": [],
             "methods": [
                 {
                     "name": "takeLocation",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 15,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "takeTemperature",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "Observable<any>",
                     "typeParameters": [],
                     "line": 10,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\nexport class WeatherService {\r\n\r\n  takeTemperature() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          console.log(valor);\r\n        });\r\n    })\r\n  }\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`)\r\n        .subscribe((valor) => {\r\n          console.log(valor);\r\n      });\r\n    })\r\n  }\r\n\r\n  /* takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`)\r\n        .subscribe((valor) => {\r\n          //this.city = valor.data['0'].county;\r\n          //this.state = valor.data['0'].region_code;\r\n          //this.takeWeather();\r\n      });\r\n    })\r\n  } */\r\n\r\n  /* takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          //this.temp = Math.trunc(valor.current.temp);\r\n        })\r\n    })\r\n  } */\r\n\r\n  constructor(private http: HttpClient) { }\r\n}\r\n\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\nexport class WeatherService {\r\n  takeTemperature(lat: number, lon: number): Observable<any> {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    return this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);\r\n  }\r\n\r\n  takeLocation(lat: number, lon: number): Observable<any> {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    return this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${lat},${lon}`);\r\n  }\r\n  \r\n  constructor(private http: HttpClient) { }\r\n}\r\n\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -294,7 +352,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 32,
+                "line": 18,
                 "jsdoctags": [
                     {
                         "name": "http",
@@ -426,7 +484,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-button {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border: none !important;\n  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\n  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\n  transition: ease-out 200ms;\n  line-height: 22.82px;\n  border-radius: 50px;\n  font-weight: 700;\n  cursor: pointer;\n  color: #FFF;\n  font-size: 18px;\n  width: 379px;\n  font-size: 16px;\n  padding: 12px 24px;\n  width: 100%;\n  /* width: 379px;\n  height: 67px; */\n}\n",
+                    "data": "@font-face {\n  font-family: 'mark-pro';\n  src: url(assets/fonts/Mark-Pro.ttf);\n}\n\n.storybook-button {\n  font-family: 'mark-pro', 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border: none !important;\n  border: 2px solid linear-gradient(to right, #FF2D04, #C13216) !important;\n  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\n  box-shadow: inset 5px 5px 15px 0px rgba(0, 0, 0, 0.15) !important;\n  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));\n  transition: ease-out 200ms;\n  line-height: 22.82px;\n  border-radius: 50px;\n  font-weight: 700;\n  cursor: pointer;\n  color: #FFF;\n  font-size: 18px;\n  width: 379px;\n  font-size: 16px;\n  padding: 12px 24px;\n  width: 80%;\n  /* width: 379px;\n  height: 67px; */\n}\n",
                     "styleUrl": "./button.css"
                 }
             ],
@@ -445,7 +503,7 @@
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-9229d587deb4ec1eeb29b3233b3179a84224d350c44b7b685f62b40791673be3c1da9ec304dc5367a00a688a4390319674b0af0acb1a28f372c24dc99282028f",
+            "id": "component-HomeComponent-ef79811493d9d25275ae16c85e1a623606cb5f0d67f1d8adddbe773d1a42f53ac5db54a3b5892ee212f64c2f0e0512e715d8f7c6aaf9470cd793345bb07ebc06",
             "file": "src/app/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -479,7 +537,7 @@
                 },
                 {
                     "name": "dateTimeNow",
-                    "defaultValue": "this.getTime.getTimeNow()",
+                    "defaultValue": "this.getTime.getTimeNow(new Date)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -513,7 +571,7 @@
                 },
                 {
                     "name": "timer",
-                    "defaultValue": "60",
+                    "defaultValue": "600",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
@@ -532,7 +590,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -542,7 +600,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 68,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -552,7 +610,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -572,7 +630,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 36,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -584,11 +642,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { FirebaseAccess } from '../services/firebaseAccess.service';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { HttpClient} from '@angular/common/http';\r\nimport { Router } from '@angular/router';\r\nimport { getTimeService } from './services/get-time-now.service';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit {\r\n\r\n  dateTimeNow = this.getTime.getTimeNow();\r\n\r\n  public city = 'Loading';\r\n  public state: any;\r\n  public temp: any;\r\n\r\n  public timer = 60;\r\n\r\n  // COLOCAR DENTRO DE SERVICE ALGUMAS FUNÇÕES, TIPO REFRESHPAGE\r\n\r\n  takeLocation() {\r\n    const apiKey = 'ac12d8103b6346bf57264097f5692010';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`http://api.positionstack.com/v1/reverse?access_key=${apiKey}&query=${latitude},${longitude}`).subscribe((valor) => {\r\n        this.city = valor.data['0'].county;\r\n        this.state = valor.data['0'].region_code;\r\n        console.log(valor);\r\n        this.takeWeather();\r\n      });\r\n    })\r\n  }\r\n\r\n  takeWeather() {\r\n    const apiKey = 'cad6085cce14e33a2bbf4128b5268373';\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.http.get<any>(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)\r\n        .subscribe((valor) => {\r\n          this.temp = Math.trunc(valor.current.temp);\r\n          console.log(valor);\r\n        })\r\n    })\r\n  }\r\n\r\n  logout() {\r\n    this.router.navigate(['/login']);\r\n    this.firebaseAccess.signOutUser();\r\n  }\r\n\r\n  refreshPage() {\r\n    setInterval(() => {\r\n      this.timer--;\r\n      if (this.timer == 0) {\r\n        this.router.navigate(['/login']);\r\n        this.firebaseAccess.signOutUser();\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    private router: Router,\r\n    private getTime: getTimeService,\r\n    private firebaseAccess: FirebaseAccess,\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.takeLocation();\r\n    /* this.takeWeather(); */\r\n    this.refreshPage();\r\n  }\r\n\r\n}\r\n\r\n\r\n",
+            "sourceCode": "import { FirebaseAccess } from '../services/firebaseAccess.service';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { getTimeService } from './services/get-time-now.service';\r\nimport { WeatherService } from './services/weather.service';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit {\r\n\r\n  dateTimeNow = this.getTime.getTimeNow(new Date);\r\n\r\n  public city = 'Loading';\r\n  public state: any;\r\n  public temp: any;\r\n\r\n  public timer = 600;\r\n\r\n  // COLOCAR DENTRO DE SERVICE ALGUMAS FUNÇÕES, TIPO REFRESHPAGE\r\n\r\n  takeLocation() {\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.weatherService.takeLocation(latitude, longitude).subscribe((valor: any) => {\r\n        this.city = valor.data['0'].county;\r\n        this.state = valor.data['0'].region_code;\r\n      });\r\n      this.takeWeather();\r\n    });\r\n  }\r\n\r\n  takeWeather() {\r\n    navigator.geolocation.getCurrentPosition((position) => {\r\n      let longitude = position.coords.longitude;\r\n      let latitude = position.coords.latitude;\r\n      this.weatherService.takeTemperature(latitude, longitude).subscribe((valor: any) => {\r\n        this.temp = Math.trunc(valor.current.temp);\r\n      });\r\n    }); \r\n  }\r\n\r\n  logout() {\r\n    this.router.navigate(['/login']);\r\n    this.firebaseAccess.signOutUser();\r\n  }\r\n\r\n  refreshPage() {\r\n    setInterval(() => {\r\n      this.timer--;\r\n      if (this.timer == 0) {\r\n        this.router.navigate(['/login']);\r\n        this.firebaseAccess.signOutUser();\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private getTime: getTimeService,\r\n    private firebaseAccess: FirebaseAccess,\r\n    private weatherService: WeatherService\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.takeLocation();\r\n    this.refreshPage();\r\n  }\r\n\r\n}\r\n\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "#homeComponent {\r\n  background: linear-gradient(105.96deg, #FFFFFF 0%, #F0F0F0 97.86%);\r\n  box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);\r\n  min-height: 100vh;\r\n  \r\n  header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    height: 163px;\r\n    color: #222222;\r\n    margin-bottom: 59px;\r\n\r\n    .logo-compasso {\r\n      /* width: 7.81%; */\r\n      width: 150px;\r\n      /* height: 4%; */\r\n      height: 42.75px;\r\n      margin-left: 40px;\r\n      margin-top: 25px;\r\n    }\r\n\r\n    #dateTime {\r\n      margin-top: 20px;\r\n      text-align: center;\r\n      display: flex;\r\n      flex-direction: column;\r\n      width: 17.03%;\r\n      .hour {\r\n        font-weight: 700;\r\n        font-size: 144px;\r\n        height: 126px;\r\n        width: 100.6%;\r\n      }\r\n      .date {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 17.75px;\r\n      }\r\n    }\r\n\r\n    #temperature-container {\r\n      margin-top: 25px;\r\n      margin-right: 41px;\r\n      width: 6.31%;\r\n      height: 78px;\r\n      text-align: center;\r\n\r\n      p {\r\n        line-height: 17.75px;\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n      }\r\n\r\n      .temperature {\r\n        display: flex;\r\n        margin-top: 12px;\r\n        img {\r\n          width: 60%;\r\n          height: 60%;\r\n        }\r\n\r\n        p {\r\n          margin-left: 12px;\r\n          font-weight: 700;\r\n          font-size: 48px;\r\n          line-height: 60.84px;\r\n        }\r\n\r\n      }\r\n    }\r\n  }\r\n\r\n  main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    text-align: end;\r\n\r\n    .texts {\r\n      margin-top: 102.96px;\r\n      margin-right: 134px;\r\n\r\n      p {\r\n        font-family: 'mark-pro-bold';\r\n        color: #C12D18;\r\n        font-weight: 700;\r\n        font-size: 64px;\r\n        line-height: 61.12px;\r\n      }\r\n\r\n      span {\r\n        color: #222;\r\n        font-weight: 400;\r\n        font-size: 24px;\r\n      }\r\n\r\n      div {\r\n        margin-bottom: 20px;\r\n      }\r\n\r\n      .text-1 {\r\n        p {\r\n          font-size: 36px !important;\r\n          line-height: 35.63px !important;\r\n        }\r\n      }\r\n\r\n      .text-4 {\r\n        p {\r\n          margin-right: 26px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  footer {\r\n    display: flex;\r\n    height: 100px;\r\n    width: 100%;\r\n    background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);\r\n    color: #FFFFFF;\r\n\r\n    .footer-message {\r\n      margin-left: 354px;\r\n      margin-right: 35px;\r\n      margin-top: 33px;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 28.2%;\r\n      height: 58px;\r\n      text-align: end;\r\n    }\r\n\r\n    .barrinha {\r\n      height: 61px;\r\n      margin-top: 17px;\r\n      width: 1px;\r\n      background-color: #FFF;\r\n    }\r\n\r\n    .refresh-message {\r\n      margin-left: 123px;\r\n      margin-top: 32px;\r\n      width: 109px;\r\n      font-weight: 400;\r\n      font-size: 14px;\r\n      line-height: 17.75px;\r\n      text-align: end;\r\n    }\r\n\r\n    .timer {\r\n      margin-top: 9px;\r\n      margin-left: 33px;\r\n      margin-right: 409px;\r\n      text-align: center;\r\n      .timer-number {\r\n        margin-top: 9px;\r\n        font-weight: 700;\r\n        font-size: 48px;\r\n        line-height: 50.84px;\r\n      }\r\n\r\n      .unit {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 8.75px;\r\n      }\r\n    }\r\n\r\n    .continue {\r\n      padding: 36px 18px;\r\n      background-color: #FFF;\r\n      color: #C13216 !important;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 95px;\r\n      height: 28px;\r\n      text-align: center;\r\n    }\r\n\r\n    .logout {\r\n      padding: 42px 23px;\r\n      width: 69px;\r\n      height: 35px;\r\n      font-weight: 700;\r\n      font-size: 12px;\r\n      line-height: 15.21px;\r\n      text-align: center;\r\n    }\r\n  }\r\n\r\n}\r\n\r\n@media screen and (min-width: 1400px) and (max-width: 2000px) {\r\n  #homeComponent {\r\n    footer {\r\n      .timer {\r\n        margin-right: 460px !important;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1000px) and (max-width: 1400px) {\r\n  #homeComponent {\r\n    header {\r\n      margin-bottom: 19px;\r\n      #dateTime {\r\n        .hour {\r\n          font-size: 90px;\r\n          height: 80px;\r\n        }\r\n      }\r\n      #temperature-container {\r\n        margin-right: 40px;\r\n        p {\r\n          width: 100px;\r\n        }\r\n        .temperature {\r\n          margin-top: 4px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 26px;\r\n            margin-left: 6px;\r\n            line-height: 30px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      .bola-compass {\r\n        width: 27%;\r\n        height: 400px;\r\n      }\r\n\r\n      .texts {\r\n        margin-top: 0px;\r\n        p {\r\n          font-size: 42px;\r\n          line-height: 34px;\r\n        }\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n      }\r\n\r\n    }\r\n\r\n    footer {\r\n      max-height: 80px;\r\n\r\n      .footer-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n        width: 40%;\r\n      }\r\n\r\n      .barrinha {\r\n        margin-top: 8px;\r\n        height: 48px;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n      }\r\n\r\n      .timer {\r\n        margin-left: 40px;\r\n        margin-right: 220px;\r\n        .timer-number {\r\n          font-size: 32px;\r\n          line-height: 30px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 24px 16px;\r\n      }\r\n\r\n      .logout {\r\n        padding: 30px 16px 10px 16px;\r\n      }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 320px) and (max-width: 768px) {\r\n  #homeComponent {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: space-between;\r\n    min-height: 100vh;\r\n    header {\r\n      justify-content: space-between;\r\n      margin: 0;\r\n      padding-top: 10px;\r\n      .logo-compasso {\r\n        max-width: 40%;\r\n        margin: 0;\r\n        margin-left: 10px;\r\n      }\r\n      #dateTime {\r\n        display: none;\r\n      }\r\n      #temperature-container {\r\n        width: 100px;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-right: 10px;\r\n        p {\r\n          font-size: 14px;\r\n        }\r\n        .temperature {\r\n          margin: 0;\r\n          padding-left: 10px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 16px;\r\n            line-height: 20px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      margin: 0 auto;\r\n      display: flex;\r\n      justify-content: center;\r\n      .bola-compass {\r\n        display: none;\r\n      }\r\n      \r\n      .texts {\r\n        width: 90%;\r\n        margin: 0 auto;\r\n        margin-bottom: 80px;\r\n        p {\r\n          font-size: 24px;\r\n          line-height: 30px;\r\n        }\r\n\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n\r\n        .text-4 {\r\n          p {\r\n            margin: 0;\r\n          }\r\n        }\r\n\r\n      }\r\n    }\r\n\r\n    footer {\r\n      flex-direction: column;\r\n      align-items: center;\r\n      height: auto;\r\n\r\n      .footer-message {\r\n        width: 96%;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-bottom: 10px;\r\n        text-align: left;\r\n        font-size: 12px;\r\n        text-align: center;\r\n      }\r\n\r\n      .barrinha {\r\n        display: none;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin: 0;\r\n        padding-top: 10px;\r\n        font-size: 16px;\r\n        text-align: center;\r\n        width: 300px;\r\n      }\r\n\r\n      .timer {\r\n        margin: 0;\r\n        margin-bottom: 10px;\r\n        .timer-number {\r\n          font-size: 16px;\r\n          line-height: 20px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n      \r\n      .logout {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+                    "data": "#homeComponent {\r\n  background: linear-gradient(105.96deg, #FFFFFF 0%, #F0F0F0 97.86%);\r\n  box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);\r\n  min-height: 100vh;\r\n  \r\n  header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    height: 163px;\r\n    color: #222222;\r\n    margin-bottom: 59px;\r\n\r\n    .logo-compasso {\r\n      /* width: 7.81%; */\r\n      width: 150px;\r\n      /* height: 4%; */\r\n      height: 42.75px;\r\n      margin-left: 40px;\r\n      margin-top: 25px;\r\n    }\r\n\r\n    #dateTime {\r\n      margin-top: 20px;\r\n      text-align: center;\r\n      display: flex;\r\n      flex-direction: column;\r\n      width: 17.03%;\r\n      .hour {\r\n        font-weight: 700;\r\n        font-size: 144px;\r\n        height: 126px;\r\n        width: 100.6%;\r\n      }\r\n      .date {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 17.75px;\r\n      }\r\n    }\r\n\r\n    #temperature-container {\r\n      margin-top: 25px;\r\n      margin-right: 41px;\r\n      width: 6.31%;\r\n      height: 78px;\r\n      text-align: center;\r\n\r\n      p {\r\n        line-height: 17.75px;\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n      }\r\n\r\n      .temperature {\r\n        display: flex;\r\n        margin-top: 12px;\r\n        img {\r\n          width: 60%;\r\n          height: 60%;\r\n        }\r\n\r\n        p {\r\n          margin-left: 12px;\r\n          font-weight: 700;\r\n          font-size: 48px;\r\n          line-height: 60.84px;\r\n        }\r\n\r\n      }\r\n    }\r\n  }\r\n\r\n  main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    text-align: end;\r\n\r\n    .texts {\r\n      margin-top: 102.96px;\r\n      margin-right: 134px;\r\n\r\n      p {\r\n        font-family: 'mark-pro-bold';\r\n        color: #C12D18;\r\n        font-weight: 700;\r\n        font-size: 64px;\r\n        line-height: 61.12px;\r\n      }\r\n\r\n      span {\r\n        color: #222;\r\n        font-weight: 400;\r\n        font-size: 24px;\r\n      }\r\n\r\n      div {\r\n        margin-bottom: 20px;\r\n      }\r\n\r\n      .text-1 {\r\n        p {\r\n          font-size: 36px !important;\r\n          line-height: 35.63px !important;\r\n        }\r\n      }\r\n\r\n      .text-4 {\r\n        p {\r\n          margin-right: 26px;\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  footer {\r\n    display: flex;\r\n    height: 100px;\r\n    width: 100%;\r\n    background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);\r\n    color: #FFFFFF;\r\n\r\n    .footer-message {\r\n      margin-left: 354px;\r\n      margin-right: 35px;\r\n      margin-top: 33px;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 28.2%;\r\n      height: 58px;\r\n      text-align: end;\r\n    }\r\n\r\n    .barrinha {\r\n      height: 61px;\r\n      margin-top: 17px;\r\n      width: 1px;\r\n      background-color: #FFF;\r\n    }\r\n\r\n    .refresh-message {\r\n      margin-left: 123px;\r\n      margin-top: 32px;\r\n      width: 109px;\r\n      font-weight: 400;\r\n      font-size: 14px;\r\n      line-height: 17.75px;\r\n      text-align: end;\r\n    }\r\n\r\n    .timer {\r\n      margin-top: 9px;\r\n      margin-left: 33px;\r\n      margin-right: 409px;\r\n      text-align: center;\r\n      .timer-number {\r\n        margin-top: 9px;\r\n        font-weight: 700;\r\n        font-size: 48px;\r\n        line-height: 50.84px;\r\n      }\r\n\r\n      .unit {\r\n        font-weight: 400;\r\n        font-size: 14px;\r\n        line-height: 8.75px;\r\n      }\r\n    }\r\n\r\n    .continue {\r\n      padding: 36px 18px;\r\n      background-color: #FFF;\r\n      color: #C13216 !important;\r\n      font-weight: 400;\r\n      font-size: 12px;\r\n      line-height: 15px;\r\n      width: 95px;\r\n      height: 28px;\r\n      text-align: center;\r\n    }\r\n\r\n    .logout {\r\n      padding: 42px 23px;\r\n      width: 69px;\r\n      height: 35px;\r\n      font-weight: 700;\r\n      font-size: 12px;\r\n      line-height: 15.21px;\r\n      text-align: center;\r\n    }\r\n  }\r\n\r\n}\r\n\r\n@media screen and (min-width: 1400px) and (max-width: 2000px) {\r\n  #homeComponent {\r\n    footer {\r\n      .timer {\r\n        margin-right: 460px !important;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 1000px) and (max-width: 1400px) {\r\n  #homeComponent {\r\n    max-height: 100vh;\r\n    header {\r\n      margin-bottom: 19px;\r\n      #dateTime {\r\n        .hour {\r\n          font-size: 90px;\r\n          height: 80px;\r\n        }\r\n      }\r\n      #temperature-container {\r\n        margin-right: 40px;\r\n        p {\r\n          width: 100px;\r\n        }\r\n        .temperature {\r\n          margin-top: 4px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 26px;\r\n            margin-left: 6px;\r\n            line-height: 30px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      .bola-compass {\r\n        width: 27%;\r\n        height: 400px;\r\n      }\r\n\r\n      .texts {\r\n        margin-top: 0px;\r\n        p {\r\n          font-size: 42px;\r\n          line-height: 34px;\r\n        }\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n      }\r\n\r\n    }\r\n\r\n    footer {\r\n      max-height: 80px;\r\n\r\n      .footer-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n        width: 40%;\r\n      }\r\n\r\n      .barrinha {\r\n        margin-top: 8px;\r\n        height: 48px;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin-top: 16px;\r\n        margin-left: 60px;\r\n      }\r\n\r\n      .timer {\r\n        margin-left: 40px;\r\n        margin-right: 220px;\r\n        .timer-number {\r\n          font-size: 32px;\r\n          line-height: 30px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 24px 16px;\r\n      }\r\n\r\n      .logout {\r\n        padding: 30px 16px 10px 16px;\r\n      }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 320px) and (max-width: 768px) {\r\n  #homeComponent {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: space-between;\r\n    min-height: 100vh;\r\n    header {\r\n      justify-content: space-between;\r\n      margin: 0;\r\n      padding-top: 10px;\r\n      .logo-compasso {\r\n        max-width: 40%;\r\n        margin: 0;\r\n        margin-left: 10px;\r\n      }\r\n      #dateTime {\r\n        display: none;\r\n      }\r\n      #temperature-container {\r\n        width: 100px;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-right: 10px;\r\n        p {\r\n          font-size: 14px;\r\n        }\r\n        .temperature {\r\n          margin: 0;\r\n          padding-left: 10px;\r\n          img {\r\n            width: 30%;\r\n            height: 30%;\r\n          }\r\n          p {\r\n            font-size: 16px;\r\n            line-height: 20px;\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n    main {\r\n      margin: 0 auto;\r\n      display: flex;\r\n      justify-content: center;\r\n      .bola-compass {\r\n        display: none;\r\n      }\r\n      \r\n      .texts {\r\n        width: 90%;\r\n        margin: 0 auto;\r\n        margin-bottom: 80px;\r\n        p {\r\n          font-size: 24px;\r\n          line-height: 30px;\r\n        }\r\n\r\n        span {\r\n          font-size: 16px;\r\n        }\r\n\r\n        .text-4 {\r\n          p {\r\n            margin: 0;\r\n          }\r\n        }\r\n\r\n      }\r\n    }\r\n\r\n    footer {\r\n      flex-direction: column;\r\n      align-items: center;\r\n      height: auto;\r\n\r\n      .footer-message {\r\n        width: 96%;\r\n        margin: 0;\r\n        margin-top: 10px;\r\n        margin-bottom: 10px;\r\n        text-align: left;\r\n        font-size: 12px;\r\n        text-align: center;\r\n      }\r\n\r\n      .barrinha {\r\n        display: none;\r\n      }\r\n\r\n      .refresh-message {\r\n        margin: 0;\r\n        padding-top: 10px;\r\n        font-size: 16px;\r\n        text-align: center;\r\n        width: 300px;\r\n      }\r\n\r\n      .timer {\r\n        margin: 0;\r\n        margin-bottom: 10px;\r\n        .timer-number {\r\n          font-size: 16px;\r\n          line-height: 20px;\r\n        }\r\n      }\r\n\r\n      .continue {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n      \r\n      .logout {\r\n        padding: 0;\r\n        width: 100%;\r\n        height: 10%;\r\n        padding: 10px;\r\n        box-sizing: border-box;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
                     "styleUrl": "./home.component.scss"
                 }
             ],
@@ -600,12 +658,6 @@
                 "deprecationMessage": "",
                 "args": [
                     {
-                        "name": "http",
-                        "type": "HttpClient",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
                         "name": "router",
                         "type": "Router",
                         "deprecated": false,
@@ -620,21 +672,18 @@
                     {
                         "name": "firebaseAccess",
                         "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "weatherService",
+                        "type": "WeatherService",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 64,
+                "line": 59,
                 "jsdoctags": [
-                    {
-                        "name": "http",
-                        "type": "HttpClient",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
                     {
                         "name": "router",
                         "type": "Router",
@@ -656,6 +705,15 @@
                     {
                         "name": "firebaseAccess",
                         "type": "FirebaseAccess",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "weatherService",
+                        "type": "WeatherService",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -748,7 +806,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-8ea15ade6a6fd060dadd4f793007c45c8e60b8fdc548a5f64fb89638f5526bf02a54e128dee87afbea28cf859ddc66b935f2c70f0e2ce8a509607341abe8180b",
+            "id": "component-LoginComponent-37e09d804cf571a92bf1ea1989ceb0c282e8fca700d9c17165d2aa90e2f09977ebb6e128e224c879705937e804dcbdd79226761db3c31499bd6608ad767d8991",
             "file": "src/app/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -775,7 +833,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 45
+                    "line": 43
                 },
                 {
                     "name": "loginForm",
@@ -785,7 +843,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 38
+                    "line": 37
                 },
                 {
                     "name": "loginValid",
@@ -795,29 +853,52 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 43
-                },
-                {
-                    "name": "passwordValidator",
-                    "defaultValue": "{\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "optional": false,
-                    "description": "",
-                    "line": 47
+                    "line": 42
                 }
             ],
             "methodsClass": [
                 {
                     "name": "login",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "user",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 63,
+                    "line": 54,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "user",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "moveIcons",
@@ -825,7 +906,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 45,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -835,7 +916,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 83,
+                    "line": 68,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -847,7 +928,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';\r\nimport { Router } from '@angular/router';\r\nimport { FirebaseAccess } from '../services/firebaseAccess.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('moveIcon', [\r\n      state('moveIn', style({\r\n        right: 140,\r\n      })),\r\n      state('moveOut', style({\r\n        right: 85\r\n      })),\r\n      transition('moveOut <=> moveIn', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n  ]\r\n})\r\n\r\nexport class LoginComponent implements OnInit {\r\n  loginForm = new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })\r\n\r\n  loginValid = true;\r\n\r\n  isMove = false;\r\n\r\n  passwordValidator = {\r\n    lowerCase: false,\r\n    upperCase: false,\r\n    number: false,\r\n    specialCharacter: false\r\n  }\r\n\r\n  moveIcons() {\r\n    if (this.loginForm.controls['user'].value\r\n     || this.loginForm.controls['password'].value) {\r\n      this.isMove = true;\r\n    } else {\r\n      this.isMove = false;\r\n    }\r\n  }\r\n\r\n  login() {\r\n    this.firebaseAccess.signInUser(this.loginForm.controls['user']\r\n      .value, this.loginForm.controls['password'].value)\r\n    .then((userCredential) => {\r\n      this.loginValid = true;\r\n      this.router.navigate(['/home']);\r\n    })\r\n    .catch((error) => {\r\n      this.loginValid = false;\r\n      console.log(`Codígo de erro: ${error.code}!\r\n      Mensagem: ${error.message}`);\r\n    })\r\n  }\r\n\r\n  constructor(\r\n    private formBuilder: FormBuilder,\r\n    private router: Router,\r\n    private firebaseAccess: FirebaseAccess\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n}\r\n",
+            "sourceCode": "import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { trigger, transition, style, animate, state } from '@angular/animations';\r\nimport { FirebaseAccess } from '../services/firebaseAccess.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('moveIcon', [\r\n      state('moveIn', style({\r\n        right: 140,\r\n      })),\r\n      state('moveOut', style({\r\n        right: 85\r\n      })),\r\n      transition('moveOut <=> moveIn', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ]),\r\n  ]\r\n})\r\n\r\nexport class LoginComponent implements OnInit {\r\n  loginForm = new FormGroup({\r\n    user: new FormControl('', [Validators.required, Validators.email]),\r\n    password: new FormControl('', [Validators.required, Validators.minLength(3)]),\r\n  })\r\n\r\n  loginValid = true;\r\n  isMove = false;\r\n\r\n  moveIcons() {\r\n    if (this.loginForm.controls['user'].value\r\n     || this.loginForm.controls['password'].value) {\r\n      this.isMove = true;\r\n    } else {\r\n      this.isMove = false;\r\n    }\r\n  }\r\n\r\n  login(user: any, password: any) {\r\n    this.firebaseAccess.signInUser(user, password)\r\n    .then(() => {\r\n      this.loginValid = true;\r\n    })\r\n    .catch(() => {\r\n      this.loginValid = false;\r\n    });\r\n  }\r\n\r\n  constructor(\r\n    private firebaseAccess: FirebaseAccess\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -863,44 +944,14 @@
                 "deprecationMessage": "",
                 "args": [
                     {
-                        "name": "formBuilder",
-                        "type": "FormBuilder",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
                         "name": "firebaseAccess",
                         "type": "FirebaseAccess",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 75,
+                "line": 62,
                 "jsdoctags": [
-                    {
-                        "name": "formBuilder",
-                        "type": "FormBuilder",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
                     {
                         "name": "firebaseAccess",
                         "type": "FirebaseAccess",
@@ -915,11 +966,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div id=\"login-component\">\r\n  <div class=\"login-left-side\">\r\n    <div class=\"login-container\">\r\n      <h1>Olá,</h1>\r\n      <p>Para continuar navegando de forma segura, efetue o login na rede.</p>\r\n      <form\r\n        class=\"login-form\"\r\n        [formGroup]=\"loginForm\"\r\n        (ngSubmit)=\"login()\"\r\n        >\r\n        <h2>Login</h2>\r\n        <div class=\"login-input user-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"user\"\r\n            placeholder=\"Usuário\"\r\n          />\r\n          <img\r\n          [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n          class=\"user-icon\" src=\"../../assets/icons/icon-user.svg\" />\r\n        </div>\r\n        <div class=\"login-input password-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"password\"\r\n            placeholder=\"Password\"\r\n            type=\"password\"\r\n          />\r\n          <img [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"password-icon\" src=\"../../assets/icons/icon-password.svg\"\r\n          />\r\n        </div>\r\n        <div *ngIf=\"loginValid == true else loginInvalid\"></div>\r\n        <button type=\"submit\">Continuar</button>\r\n      </form>\r\n      <a class=\"link\" routerLink=\"/register\" routerLinkActive=\"active\">Não tem conta ? Registre-se</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"login-right-side\">\r\n    <div class=\"logo-container\">\r\n      <img class=\"logo\" src=\"assets/imgs/Logo-Compasso-Uol.svg\" />\r\n    </div>\r\n    <img class=\"back-image\" src=\"assets/imgs/Login-Image.png\" />\r\n  </div>\r\n</div>\r\n\r\n<ng-template #loginInvalid>\r\n  <p class=\"errorMessage\">Ops, usuário ou senha inválidos. Tente novamente!</p>\r\n</ng-template>\r\n\r\n\r\n"
+            "templateData": "<div id=\"login-component\">\r\n  <div class=\"login-left-side\">\r\n    <div class=\"login-container\">\r\n      <h1>Olá,</h1>\r\n      <p>Para continuar navegando de forma segura, efetue o login na rede.</p>\r\n      <form\r\n        class=\"login-form\"\r\n        [formGroup]=\"loginForm\"\r\n        (ngSubmit)=\"login(\r\n          loginForm.controls['user'].value,\r\n          loginForm.controls['password'].value\r\n          )\"\r\n        >\r\n        <h2>Login</h2>\r\n        <div class=\"login-input user-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"user\"\r\n            placeholder=\"Usuário\"\r\n          />\r\n          <img\r\n          [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n          class=\"user-icon\" src=\"../../assets/icons/icon-user.svg\" />\r\n        </div>\r\n        <div class=\"login-input password-input\">\r\n          <input\r\n            (change)=\"moveIcons()\"\r\n            [@warning]=\"loginValid ? 'normal' : 'yellow'\"\r\n            formControlName=\"password\"\r\n            placeholder=\"Password\"\r\n            type=\"password\"\r\n          />\r\n          <img [@moveIcon]=\"isMove ? 'moveIn' : 'moveOut'\"\r\n            class=\"password-icon\" src=\"../../assets/icons/icon-password.svg\"\r\n          />\r\n        </div>\r\n        <div *ngIf=\"loginValid == true else loginInvalid\"></div>\r\n        <button type=\"submit\">Continuar</button>\r\n      </form>\r\n      <a class=\"link\" routerLink=\"/register\" routerLinkActive=\"active\">Não tem conta ? Registre-se</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"login-right-side\">\r\n    <div class=\"logo-container\">\r\n      <img class=\"logo\" src=\"assets/imgs/Logo-Compasso-Uol.svg\" />\r\n    </div>\r\n    <img class=\"back-image\" src=\"assets/imgs/Login-Image.png\" />\r\n  </div>\r\n</div>\r\n\r\n<ng-template #loginInvalid>\r\n  <p class=\"errorMessage\">Ops, usuário ou senha inválidos. Tente novamente!</p>\r\n</ng-template>\r\n\r\n\r\n"
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-08bca3099acc72c10ac1ef3513147510065e800ab22702dd375965f76dac61e2115d85db49858893774b8d6d53330d168e2b2ae36b5d470d085633acb3c82abf",
+            "id": "component-RegisterComponent-9ab5a0d7f9bd1c0c48e4e3985f961d74408032a65bea29d47eceb7cb81e711ecd6dd0cfe0195a78d7f5e966b440e664e15e54db1cbfdb44800df6825977e06b8",
             "file": "src/app/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1016,7 +1067,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 150,
+                    "line": 146,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1026,7 +1077,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 139,
+                    "line": 136,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1036,7 +1087,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 93,
+                    "line": 90,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1068,7 +1119,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { FirebaseAccess } from './../services/firebaseAccess.service';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\nimport { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('moveIcon', [\n      state('moveIn', style({\n        right: 140,\n      })),\n      state('moveOut', style({\n        right: 85\n      })),\n      transition('moveOut <=> moveIn', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('passwordConfirmationColor', [\n      state('enter', style({color: 'green'})),\n      state('leave', style({color: '#e9b425'})),\n\n      transition('leave <=> enter', [\n        animate('0.2s')\n      ])\n    ])\n  ]\n})\n\nexport class RegisterComponent implements OnInit {\n\n  registerForm = new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })\n\n  passwordValidator = {\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }\n\n  isMove = false;\n  userValid = true;\n  passwordValid = true;\n  passwordConfirmValid = true;\n\n  moveIcons() {\n    if (\n      this.registerForm.controls['user'].value ||\n      this.registerForm.controls['password'].value ||\n      this.registerForm.controls['passwordConfirm'].value\n    ) {\n      this.isMove = true;\n    } else {\n      this.isMove = false;\n    }\n  }\n\n  validateUser() {\n    if (this.registerForm.controls['user'].errors) {\n      this.userValid = false;\n    } else {\n      this.userValid = true;\n    }\n  }\n\n  validatePasswordConfirm() {\n    if (this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value\n      || this.registerForm.controls['passwordConfirm'].value == '') {\n      this.passwordConfirmValid = false;\n    } else {\n      this.passwordConfirmValid = true;\n    }\n  }\n\n  validatePassword() {\n    const password = this.registerForm.controls['password'].value;\n    let checkFlag = 0;\n    if (password) {\n      // Minúscula\n      if (/[a-z]/.test(password)) {\n        this.passwordValidator.lowerCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.lowerCase = false;\n        checkFlag--;\n      }\n      // Maiuscula\n      if (/[A-Z]/.test(password)) {\n        this.passwordValidator.upperCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.upperCase = false;\n        checkFlag--;\n      }\n      // Number\n      if (/[0-9]/.test(password)) {\n        this.passwordValidator.number = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.number = false;\n        checkFlag--;\n      }\n      // Caracter Especial\n      if (/[`!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]/.test(password)) {\n        this.passwordValidator.specialCharacter = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.specialCharacter = false;\n        checkFlag--;\n      }\n    }\n    if (checkFlag == 4) {\n      if (!this.registerForm.controls['password'].errors) {\n        this.passwordValid = true;\n        return;\n      }\n    }\n    this.passwordValid = false;\n  }\n\n  register() {\n    if (this.passwordValid == true && this.userValid == true && this.passwordConfirmValid == true) {\n      this.firebaseAccess.createNewUser(\n        this.registerForm.controls['user'].value, this.registerForm.controls['password'].value\n      )\n    }\n    console.log(this.firebaseAccess.auth);\n  }\n\n  constructor(private firebaseAccess: FirebaseAccess) { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { FirebaseAccess } from './../services/firebaseAccess.service';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\nimport { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('moveIcon', [\n      state('moveIn', style({\n        right: 140,\n      })),\n      state('moveOut', style({\n        right: 85\n      })),\n      transition('moveOut <=> moveIn', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ]),\n    trigger('passwordConfirmationColor', [\n      state('enter', style({color: 'green'})),\n      state('leave', style({color: '#e9b425'})),\n\n      transition('leave <=> enter', [\n        animate('0.2s')\n      ])\n    ])\n  ]\n})\n\nexport class RegisterComponent implements OnInit {\n\n  registerForm = new FormGroup({\n    user: new FormControl('', [Validators.required, Validators.email, Validators.minLength(3)]),\n    password: new FormControl('', [Validators.required, Validators.minLength(6)]),\n    passwordConfirm: new FormControl('')\n  })\n\n  passwordValidator = {\n    lowerCase: false,\n    upperCase: false,\n    number: false,\n    specialCharacter: false\n  }\n\n  isMove = false;\n  userValid = true;\n  passwordValid = true;\n  passwordConfirmValid = true;\n\n  moveIcons() {\n    if (\n      this.registerForm.controls['user'].value ||\n      this.registerForm.controls['password'].value ||\n      this.registerForm.controls['passwordConfirm'].value\n    ) {\n      this.isMove = true;\n    } else {\n      this.isMove = false;\n    }\n  }\n\n  validateUser() {\n    if (this.registerForm.controls['user'].errors) {\n      this.userValid = false;\n    } else {\n      this.userValid = true;\n    }\n  }\n\n  validatePasswordConfirm() {\n    this.passwordConfirmValid =\n      !(this.registerForm.controls['password'].value != this.registerForm.controls['passwordConfirm'].value\n      || this.registerForm.controls['passwordConfirm'].value == '')\n  }\n\n  validatePassword() {\n    const password = this.registerForm.controls['password'].value;\n    let checkFlag = 0;\n    if (password) {\n      // Minúscula\n      if (/[a-z]/.test(password)) {\n        this.passwordValidator.lowerCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.lowerCase = false;\n        checkFlag--;\n      }\n      // Maiuscula\n      if (/[A-Z]/.test(password)) {\n        this.passwordValidator.upperCase = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.upperCase = false;\n        checkFlag--;\n      }\n      // Number\n      if (/[0-9]/.test(password)) {\n        this.passwordValidator.number = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.number = false;\n        checkFlag--;\n      }\n      // Caracter Especial\n      if (/[`!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~]/.test(password)) {\n        this.passwordValidator.specialCharacter = true;\n        checkFlag++;\n      } else {\n        this.passwordValidator.specialCharacter = false;\n        checkFlag--;\n      }\n    }\n    if (checkFlag == 4) {\n      if (!this.registerForm.controls['password'].errors) {\n        this.passwordValid = true;\n        return;\n      }\n    }\n    this.passwordValid = false;\n  }\n\n  register() {\n    if (this.passwordValid && this.userValid && this.passwordConfirmValid) {\n      this.firebaseAccess.createNewUser(\n        this.registerForm.controls['user'].value, this.registerForm.controls['password'].value\n      )\n    }\n  }\n\n  constructor(private firebaseAccess: FirebaseAccess) { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1090,7 +1141,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 146,
+                "line": 142,
                 "jsdoctags": [
                     {
                         "name": "firebaseAccess",
@@ -1189,13 +1240,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-72cef7958c0313d22ac52e5d262c6165d973d04dacb847466586234209fff11440b84c8608eee69736db67286bf98c008810ec2f3dfc322d1ae5e5e7fc8d303d",
+            "id": "module-AppModule-11774c5424179e39ab47f36e1bd2f91dea68fe63cf40a75d3f1fe0f7d4cbaed49e09174a523025d0eedee0d90929b0de3b8272c9e30b52781cf88cb142c11af4",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { AppRoutingModule } from './app.routing.module';\r\nimport { HomeModule } from './home/home.module';\r\nimport { LoginModule } from './login/login.module';\r\nimport { RegisterModule } from './register/register.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    LoginModule,\r\n    RegisterModule,\r\n    HomeModule,\r\n    AppRoutingModule,\r\n    CommonModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { NgModule } from '@angular/core';\r\nimport { AngularFireAuthModule } from '@angular/fire/compat/auth';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { AppRoutingModule } from './app.routing.module';\r\nimport { HomeModule } from './home/home.module';\r\nimport { LoginModule } from './login/login.module';\r\nimport { RegisterModule } from './register/register.module';\r\nimport { environment } from 'src/environments/environment';\r\nimport { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    LoginModule,\r\n    RegisterModule,\r\n    HomeModule,\r\n    AppRoutingModule,\r\n    CommonModule,\r\n    AngularFireAuthModule,\r\n    AngularFireModule.initializeApp(environment.firebaseConfig)\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1501,7 +1552,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\n    projectId: \"finalprojectangular-bd4f1\",\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\n    messagingSenderId: \"114691533755\",\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\n    measurementId: \"G-QFH041HDEW\"\n  }\n}"
             },
             {
                 "name": "Primary",
@@ -1737,7 +1788,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
+                    "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyBKTKHepesotRdaOmKi9cok1XMd9kTl5A8\",\n    authDomain: \"finalprojectangular-bd4f1.firebaseapp.com\",\n    projectId: \"finalprojectangular-bd4f1\",\n    storageBucket: \"finalprojectangular-bd4f1.appspot.com\",\n    messagingSenderId: \"114691533755\",\n    appId: \"1:114691533755:web:9e9f15eefe81ab119e329e\",\n    measurementId: \"G-QFH041HDEW\"\n  }\n}"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -1991,7 +2042,7 @@
                 "linktype": "injectable",
                 "name": "getTimeService",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2009,7 +2060,7 @@
                 "linktype": "component",
                 "name": "LoginComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -2027,7 +2078,7 @@
                 "linktype": "injectable",
                 "name": "FirebaseAccess",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {

@@ -1,7 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate, state, query, stagger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 import { FirebaseAccess } from '../services/firebaseAccess.service';
 
 @Component({
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
   })
 
   loginValid = true;
-
   isMove = false;
 
   moveIcons() {
@@ -53,23 +51,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
-    this.firebaseAccess.signInUser(this.loginForm.controls['user']
-      .value, this.loginForm.controls['password'].value)
-    .then((userCredential) => {
+  login(user: any, password: any) {
+    this.firebaseAccess.signInUser(user, password)
+    .then(() => {
       this.loginValid = true;
-      this.router.navigate(['/home']);
     })
-    .catch((error) => {
+    .catch(() => {
       this.loginValid = false;
-      console.log(`Codígo de erro: ${error.code}!
-      Mensagem: ${error.message}`);
-    })
+    });
   }
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
     private firebaseAccess: FirebaseAccess
   ) {}
 
