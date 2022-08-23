@@ -17,10 +17,10 @@
   cursor: pointer;
   color: #FFF;
   font-size: 18px;
-  width: 379px;
+  /* width: 379px; */
   font-size: 16px;
   padding: 12px 24px;
-  width: 80%;
+  width: 60%;
   /* width: 379px;
   height: 67px; */
 }
